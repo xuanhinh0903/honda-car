@@ -1,0 +1,49 @@
+{
+  "articles": [
+    {
+      "slug": "bang-gia-honda-city-2026",
+      "title": "Bảng giá và gói khuyến mãi Honda City 2026 G L Rs — Hướng dẫn chọn mua thực tế",
+      "excerpt": "Tổng hợp bảng giá Honda City 2026 các phiên bản G, L, RS cùng gói khuyến mãi hấp dẫn tại Honda Tiến Đạt.",
+      "image": "/images/news/city-2026.jpg",
+      "date": "2026-03-15",
+      "category": "khuyen-mai",
+      "featured": true
+    },
+    {
+      "slug": "so-sanh-honda-city-2026",
+      "title": "Tổng quan so sánh Honda City 2026 G L Rs — chọn phiên bản phù hợp",
+      "excerpt": "Phân tích chi tiết sự khác biệt giữa các phiên bản Honda City 2026 để giúp bạn chọn mẫu xe phù hợp nhất.",
+      "image": "/images/news/city-compare.jpg",
+      "date": "2026-03-10",
+      "category": "phan-tich",
+      "featured": true
+    },
+    {
+      "slug": "gia-lan-banh-honda-civic-2026",
+      "title": "Giá lăn bánh Honda Civic 2026: ước tính tổng chi phí theo phiên bản",
+      "excerpt": "Tính toán chi phí lăn bánh Honda Civic 2026 bao gồm thuế, phí đăng ký và bảo hiểm cho từng phiên bản.",
+      "image": "/images/news/civic-price.jpg",
+      "date": "2026-03-05",
+      "category": "ho-tro",
+      "featured": true
+    },
+    {
+      "slug": "gia-lan-banh-honda-hrv-2026",
+      "title": "Giá lăn bánh Honda HR-V 2026 — Chi phí thực tế & gói hỗ trợ tại Honda Tiến Đạt",
+      "excerpt": "Cập nhật giá lăn bánh Honda HR-V 2026 và các gói hỗ trợ tài chính tại đại lý Honda Tiến Đạt.",
+      "image": "/images/news/hrv-price.jpg",
+      "date": "2026-02-28",
+      "category": "ho-tro",
+      "featured": false
+    },
+    {
+      "slug": "honda-crv-2026-danh-gia",
+      "title": "Honda CR-V 2026 dành cho gia đình: Đánh giá thực tế",
+      "excerpt": "Đánh giá toàn diện Honda CR-V 2026 e:HEV từ góc nhìn gia đình Việt Nam.",
+      "image": "/images/news/crv-review.jpg",
+      "date": "2026-02-20",
+      "category": "phan-tich",
+      "featured": false
+    }
+  ]
+}

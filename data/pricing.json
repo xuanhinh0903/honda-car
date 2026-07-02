@@ -1,0 +1,58 @@
+{
+  "title": "Bảng giá xe Honda 2026",
+  "updatedAt": "2026-03-01",
+  "cars": [
+    {
+      "slug": "city",
+      "name": "Honda City",
+      "variants": [
+        { "name": "G", "price": 499000000 },
+        { "name": "L", "price": 569000000 },
+        { "name": "RS", "price": 599000000 }
+      ]
+    },
+    {
+      "slug": "civic",
+      "name": "Honda Civic",
+      "variants": [
+        { "name": "G", "price": 730000000 },
+        { "name": "RS", "price": 870000000 },
+        { "name": "Type R", "price": 1399000000 }
+      ]
+    },
+    {
+      "slug": "cr-v",
+      "name": "Honda CR-V e:HEV",
+      "variants": [
+        { "name": "G", "price": 998000000 },
+        { "name": "L", "price": 1099000000 },
+        { "name": "RS", "price": 1199000000 }
+      ]
+    },
+    {
+      "slug": "hr-v",
+      "name": "Honda HR-V",
+      "variants": [
+        { "name": "G", "price": 669000000 },
+        { "name": "L", "price": 729000000 },
+        { "name": "RS", "price": 789000000 }
+      ]
+    },
+    {
+      "slug": "br-v",
+      "name": "Honda BR-V",
+      "variants": [
+        { "name": "G", "price": 629000000 },
+        { "name": "L", "price": 689000000 }
+      ]
+    },
+    {
+      "slug": "brio",
+      "name": "Honda Brio",
+      "variants": [
+        { "name": "G", "price": 419000000 },
+        { "name": "RS", "price": 469000000 }
+      ]
+    }
+  ]
+}

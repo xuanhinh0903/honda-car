@@ -1,0 +1,37 @@
+{
+  "slug": "cr-v",
+  "name": "Honda CR-V e:HEV Rs",
+  "tagline": "SUV hybrid cao cấp",
+  "category": "SUV",
+  "priceFrom": 998000000,
+  "heroImage": "/images/cars/crv-hero.jpg",
+  "thumbnail": "/images/cars/crv-thumb.jpg",
+  "gallery": [
+    "/images/cars/crv-hero.jpg",
+    "/images/cars/crv-interior.jpg",
+    "/images/cars/crv-side.jpg"
+  ],
+  "description": "Honda CR-V e:HEV Rs kết hợp động cơ hybrid tiên tiến với không gian SUV rộng rãi, mang đến trải nghiệm lái êm ái và tiết kiệm nhiên liệu vượt trội.",
+  "highlights": [
+    "e:HEV Hybrid",
+    "Honda SENSING 360°",
+    "Không gian 7 chỗ",
+    "AWD thông minh"
+  ],
+  "variants": [
+    { "name": "G", "price": 998000000, "engine": "2.0L e:HEV", "transmission": "e-CVT" },
+    { "name": "L", "price": 1099000000, "engine": "2.0L e:HEV", "transmission": "e-CVT" },
+    { "name": "RS", "price": 1199000000, "engine": "2.0L e:HEV", "transmission": "e-CVT" }
+  ],
+  "specs": {
+    "engine": "2.0L e:HEV",
+    "power": "184 mã lực",
+    "torque": "315 Nm",
+    "transmission": "e-CVT",
+    "fuelConsumption": "5.0 L/100km",
+    "seats": 7,
+    "length": "4.691 mm",
+    "width": "1.866 mm",
+    "height": "1.690 mm"
+  }
+}

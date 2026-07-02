@@ -1,0 +1,37 @@
+{
+  "slug": "civic",
+  "name": "Honda Civic",
+  "tagline": "Sedan thể thao đẳng cấp",
+  "category": "Sedan",
+  "priceFrom": 730000000,
+  "heroImage": "/images/cars/civic-hero.jpg",
+  "thumbnail": "/images/cars/civic-thumb.jpg",
+  "gallery": [
+    "/images/cars/civic-hero.jpg",
+    "/images/cars/civic-interior.jpg",
+    "/images/cars/civic-side.jpg"
+  ],
+  "description": "Honda Civic thế hệ mới với thiết kế thể thao, động cơ turbo mạnh mẽ và công nghệ an toàn Honda SENSING toàn diện.",
+  "highlights": [
+    "Thiết kế thể thao coupe",
+    "Động cơ 1.5L Turbo",
+    "Honda SENSING",
+    "Hệ thống treo độc lập"
+  ],
+  "variants": [
+    { "name": "G", "price": 730000000, "engine": "1.5L Turbo", "transmission": "CVT" },
+    { "name": "RS", "price": 870000000, "engine": "1.5L Turbo", "transmission": "CVT" },
+    { "name": "Type R", "price": 1399000000, "engine": "2.0L Turbo", "transmission": "6MT" }
+  ],
+  "specs": {
+    "engine": "1.5L Turbo",
+    "power": "178 mã lực",
+    "torque": "240 Nm",
+    "transmission": "CVT",
+    "fuelConsumption": "6.5 L/100km",
+    "seats": 5,
+    "length": "4.678 mm",
+    "width": "1.802 mm",
+    "height": "1.415 mm"
+  }
+}

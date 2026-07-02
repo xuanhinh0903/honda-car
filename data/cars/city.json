@@ -1,0 +1,37 @@
+{
+  "slug": "city",
+  "name": "Honda City",
+  "tagline": "Sedan hạng B đẳng cấp",
+  "category": "Sedan",
+  "priceFrom": 499000000,
+  "heroImage": "/images/cars/city-hero.jpg",
+  "thumbnail": "/images/cars/city-thumb.jpg",
+  "gallery": [
+    "/images/cars/city-hero.jpg",
+    "/images/cars/city-interior.jpg",
+    "/images/cars/city-side.jpg"
+  ],
+  "description": "Honda City 2026 mang đến trải nghiệm lái xe thoải mái với không gian nội thất rộng rãi, công nghệ Honda SENSING tiên tiến và động cơ tiết kiệm nhiên liệu.",
+  "highlights": [
+    "Honda SENSING",
+    "Không gian rộng rãi hàng đầu phân khúc",
+    "Động cơ 1.5L i-VTEC",
+    "Màn hình giải trí 8 inch"
+  ],
+  "variants": [
+    { "name": "G", "price": 499000000, "engine": "1.5L i-VTEC", "transmission": "CVT" },
+    { "name": "L", "price": 569000000, "engine": "1.5L i-VTEC", "transmission": "CVT" },
+    { "name": "RS", "price": 599000000, "engine": "1.5L i-VTEC", "transmission": "CVT" }
+  ],
+  "specs": {
+    "engine": "1.5L i-VTEC",
+    "power": "119 mã lực",
+    "torque": "145 Nm",
+    "transmission": "CVT",
+    "fuelConsumption": "5.2 L/100km",
+    "seats": 5,
+    "length": "4.553 mm",
+    "width": "1.748 mm",
+    "height": "1.467 mm"
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "br-v",
+  "name": "Honda BR-V",
+  "tagline": "MPV 7 chỗ tiện nghi",
+  "category": "SUV",
+  "priceFrom": 629000000,
+  "heroImage": "/images/cars/brv-hero.jpg",
+  "thumbnail": "/images/cars/brv-thumb.jpg",
+  "gallery": [
+    "/images/cars/brv-hero.jpg",
+    "/images/cars/brv-interior.jpg",
+    "/images/cars/brv-side.jpg"
+  ],
+  "description": "Honda BR-V là lựa chọn hoàn hảo cho gia đình với 7 chỗ ngồi rộng rãi, khoang hành lý lớn và chi phí vận hành hợp lý.",
+  "highlights": [
+    "7 chỗ ngồi",
+    "Khoang hành lý rộng",
+    "Động cơ tiết kiệm",
+    "Giá cả hợp lý"
+  ],
+  "variants": [
+    { "name": "G", "price": 629000000, "engine": "1.5L i-VTEC", "transmission": "CVT" },
+    { "name": "L", "price": 689000000, "engine": "1.5L i-VTEC", "transmission": "CVT" }
+  ],
+  "specs": {
+    "engine": "1.5L i-VTEC",
+    "power": "119 mã lực",
+    "torque": "145 Nm",
+    "transmission": "CVT",
+    "fuelConsumption": "6.0 L/100km",
+    "seats": 7,
+    "length": "4.456 mm",
+    "width": "1.735 mm",
+    "height": "1.666 mm"
+  }
+}

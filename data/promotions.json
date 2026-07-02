@@ -1,0 +1,18 @@
+{
+  "items": [
+    {
+      "id": "promo-1",
+      "title": "Ưu đãi Honda City 2026",
+      "description": "Hỗ trợ lãi suất 0% trong 12 tháng đầu",
+      "badge": "Hot",
+      "validUntil": "2026-06-30"
+    },
+    {
+      "id": "promo-2",
+      "title": "CR-V e:HEV Rs",
+      "description": "Tặng gói bảo hiểm vật chất 2 năm",
+      "badge": "Mới",
+      "validUntil": "2026-12-31"
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "slug": "hr-v",
+  "name": "Honda HR-V",
+  "tagline": "Crossover đa dụng",
+  "category": "SUV",
+  "priceFrom": 669000000,
+  "heroImage": "/images/cars/hrv-hero.jpg",
+  "thumbnail": "/images/cars/hrv-thumb.jpg",
+  "gallery": [
+    "/images/cars/hrv-hero.jpg",
+    "/images/cars/hrv-interior.jpg",
+    "/images/cars/hrv-side.jpg"
+  ],
+  "description": "Honda HR-V với thiết kế coupe SUV hiện đại, ghế Magic Seat linh hoạt và công nghệ an toàn Honda SENSING.",
+  "highlights": [
+    "Ghế Magic Seat",
+    "Honda SENSING",
+    "Thiết kế coupe SUV",
+    "Động cơ 1.5L i-VTEC"
+  ],
+  "variants": [
+    { "name": "G", "price": 669000000, "engine": "1.5L i-VTEC", "transmission": "CVT" },
+    { "name": "L", "price": 729000000, "engine": "1.5L i-VTEC", "transmission": "CVT" },
+    { "name": "RS", "price": 789000000, "engine": "1.5L i-VTEC", "transmission": "CVT" }
+  ],
+  "specs": {
+    "engine": "1.5L i-VTEC",
+    "power": "119 mã lực",
+    "torque": "145 Nm",
+    "transmission": "CVT",
+    "fuelConsumption": "5.8 L/100km",
+    "seats": 5,
+    "length": "4.330 mm",
+    "width": "1.790 mm",
+    "height": "1.590 mm"
+  }
+}

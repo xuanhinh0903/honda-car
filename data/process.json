@@ -1,0 +1,35 @@
+{
+  "title": "Quy trình mua xe",
+  "steps": [
+    {
+      "step": 1,
+      "title": "Tư vấn & lựa chọn",
+      "description": "Quý khách có 2 lựa chọn: Đến trực tiếp Showroom hoặc liên hệ Hotline để được hỗ trợ tư vấn xe theo nhu cầu."
+    },
+    {
+      "step": 2,
+      "title": "Chọn màu & tính năng",
+      "description": "Sau khi đã được tư vấn chiếc xe phù hợp, quý khách sẽ được tư vấn kỹ hơn về màu sắc và tính năng của xe."
+    },
+    {
+      "step": 3,
+      "title": "Tư vấn trả góp",
+      "description": "Nếu Quý khách mua xe trả góp, Đại lý sẽ tư vấn cho Quý khách về thủ tục trả góp và vay vốn ngân hàng."
+    },
+    {
+      "step": 4,
+      "title": "Đặt cọc giữ xe",
+      "description": "Giúp chúng tôi giữ xe cho Quý khách vì không phải chiếc xe giống như yêu cầu của Quý khách nào cũng có sẵn."
+    },
+    {
+      "step": 5,
+      "title": "Chuẩn bị hồ sơ",
+      "description": "Giúp tư vấn viên chủ động làm trước toàn bộ các thủ tục giấy tờ như: hóa đơn, giấy tờ bàn giao, phiếu xuất xưởng."
+    },
+    {
+      "step": 6,
+      "title": "Bàn giao xe",
+      "description": "Đại lý sẽ tiến hành làm lễ bàn giao xe cho Quý khách hàng bất cứ khi nào quý khách thấy phù hợp nhất."
+    }
+  ]
+}

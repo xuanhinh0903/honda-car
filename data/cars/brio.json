@@ -1,0 +1,36 @@
+{
+  "slug": "brio",
+  "name": "Honda Brio",
+  "tagline": "Xe đô thị nhỏ gọn",
+  "category": "Hatchback",
+  "priceFrom": 419000000,
+  "heroImage": "/images/cars/brio-hero.jpg",
+  "thumbnail": "/images/cars/brio-thumb.jpg",
+  "gallery": [
+    "/images/cars/brio-hero.jpg",
+    "/images/cars/brio-interior.jpg",
+    "/images/cars/brio-side.jpg"
+  ],
+  "description": "Honda Brio là chiếc hatchback nhỏ gọn, linh hoạt trong đô thị với chi phí sở hữu và vận hành hợp lý.",
+  "highlights": [
+    "Nhỏ gọn, dễ đỗ",
+    "Tiết kiệm nhiên liệu",
+    "Giá cả phải chăng",
+    "Bảo dưỡng dễ dàng"
+  ],
+  "variants": [
+    { "name": "G", "price": 419000000, "engine": "1.2L i-VTEC", "transmission": "CVT" },
+    { "name": "RS", "price": 469000000, "engine": "1.2L i-VTEC", "transmission": "CVT" }
+  ],
+  "specs": {
+    "engine": "1.2L i-VTEC",
+    "power": "89 mã lực",
+    "torque": "110 Nm",
+    "transmission": "CVT",
+    "fuelConsumption": "4.8 L/100km",
+    "seats": 5,
+    "length": "3.817 mm",
+    "width": "1.686 mm",
+    "height": "1.485 mm"
+  }
+}
