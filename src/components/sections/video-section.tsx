@@ -1,17 +1,22 @@
 import { SectionTitle } from "@/components/motion/section-reveal";
 import { FadeIn } from "@/components/motion/fade-in";
+import type { SectionHeading } from "@/lib/types";
 
-export function VideoSection() {
+export function VideoSection({
+  video,
+}: {
+  video: SectionHeading & { youtubeId: string };
+}) {
   return (
     <section className="py-20 bg-pearl">
       <div className="container mx-auto px-4">
-        <SectionTitle subtitle="Video" title="Khám phá Honda Tiến Đạt" />
+        <SectionTitle subtitle={video.subtitle} title={video.title ?? "Khám phá Honda Tiến Đạt"} />
 
         <FadeIn>
           <div className="relative aspect-video max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl">
             <iframe
-              src="https://www.youtube.com/embed/9vQnKO_2kK4"
-              title="Honda Tiến Đạt"
+              src={`https://www.youtube.com/embed/${video.youtubeId}`}
+              title={video.title ?? "Honda Tiến Đạt"}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="absolute inset-0 w-full h-full"

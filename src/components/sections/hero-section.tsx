@@ -5,20 +5,24 @@ import { motion } from "framer-motion";
 import { Phone, Car, Calculator } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { CarImage } from "@/components/ui/car-image";
-import { getDealership } from "@/lib/data";
 import { formatPhone } from "@/lib/format";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import type { DealershipInfo, HomeHeroContent } from "@/lib/types";
 
-const dealership = getDealership();
-
-export function HeroSection() {
+export function HeroSection({
+  dealership,
+  hero,
+}: {
+  dealership: DealershipInfo;
+  hero: HomeHeroContent;
+}) {
   const reducedMotion = useReducedMotion();
 
   return (
     <section className="relative min-h-screen flex items-center bg-hero-gradient overflow-hidden">
       <div className="absolute inset-0">
         <CarImage
-          src="/images/hero/showroom.jpg"
+          src={hero.image}
           alt="Honda Tiến Đạt Showroom"
           fill
           priority
@@ -56,8 +60,7 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="text-silver text-lg mb-8 leading-relaxed"
           >
-            Đại lý 5S quy mô lớn nhất miền Bắc — {dealership.stats.area},{" "}
-            {dealership.stats.staff}+ nhân viên chuyên nghiệp
+            {hero.description}
           </motion.p>
 
           <motion.div
@@ -66,30 +69,30 @@ export function HeroSection() {
             transition={{ duration: 0.6, delay: 0.65 }}
             className="flex flex-wrap gap-3 mb-8"
           >
-            <Link href="/dang-ky-lai-thu">
+            <Link href={hero.primaryCta.href}>
               <Button
                 size="lg"
                 className="bg-honda-red hover:bg-honda-red-hover text-white border-0 h-11 px-6"
               >
                 <Car className="w-4 h-4" />
-                Đăng ký lái thử
+                {hero.primaryCta.label}
               </Button>
             </Link>
-            <Link href="/bang-gia">
+            <Link href={hero.secondaryCta.href}>
               <Button
                 size="lg"
                 className="h-11 px-6 border border-white/40 bg-transparent text-white hover:bg-white/15 hover:text-white"
               >
-                Bảng giá xe mới nhất
+                {hero.secondaryCta.label}
               </Button>
             </Link>
-            <Link href="/tinh-phi-lan-banh">
+            <Link href={hero.tertiaryCta.href}>
               <Button
                 size="lg"
                 className="h-11 px-6 border border-white/40 bg-transparent text-white hover:bg-white/15 hover:text-white"
               >
                 <Calculator className="w-4 h-4" />
-                Tính lãi trả góp
+                {hero.tertiaryCta.label}
               </Button>
             </Link>
           </motion.div>
@@ -106,7 +109,7 @@ export function HeroSection() {
             </div>
             <div>
               <p className="text-silver text-xs uppercase tracking-wider">
-                Hotline tư vấn
+                {hero.hotlineLabel}
               </p>
               <p className="text-2xl font-bold">
                 {formatPhone(dealership.hotline)}

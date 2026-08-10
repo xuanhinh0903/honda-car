@@ -1,24 +1,24 @@
 "use client";
 
-import { getProcessSteps } from "@/lib/data";
 import { SectionTitle } from "@/components/motion/section-reveal";
 import { FadeIn } from "@/components/motion/fade-in";
 import { motion } from "framer-motion";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import type { ProcessStep, SectionHeading } from "@/lib/types";
 
-const steps = getProcessSteps();
-
-export function PurchaseProcess() {
+export function PurchaseProcess({
+  steps,
+  heading,
+}: {
+  steps: ProcessStep[];
+  heading: SectionHeading;
+}) {
   const reducedMotion = useReducedMotion();
 
   return (
     <section className="py-20 bg-charcoal-light">
       <div className="container mx-auto px-4">
-        <SectionTitle
-          subtitle="Hướng dẫn"
-          title="Quy trình mua xe"
-          dark
-        />
+        <SectionTitle subtitle={heading.subtitle} title={heading.title ?? "Quy trình mua xe"} dark />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {steps.map((step, index) => (

@@ -1,8 +1,7 @@
 import { getDealership } from "@/lib/data-server";
 
-const dealership = getDealership();
-
 export function LocalBusinessJsonLd() {
+  const dealership = getDealership();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoDealer",

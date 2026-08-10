@@ -11,15 +11,14 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getCars } from "@/lib/data";
-
-const cars = getCars();
+import type { CarIndexItem } from "@/lib/types";
 
 interface QuoteFormProps {
   compact?: boolean;
+  cars: CarIndexItem[];
 }
 
-export function QuoteForm({ compact = false }: QuoteFormProps) {
+export function QuoteForm({ compact = false, cars }: QuoteFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",

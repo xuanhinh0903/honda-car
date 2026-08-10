@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
-import { getNews } from "@/lib/data-server";
+import { getNews, getPageContent } from "@/lib/data-server";
 import { formatDate } from "@/lib/format";
 import { SectionTitle } from "@/components/motion/section-reveal";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container";
@@ -21,13 +21,14 @@ const categoryLabels: Record<string, string> = {
   "phan-tich": "Phân tích",
 };
 
-const articles = getNews();
-
 export default function TinTucPage() {
+  const newsHeading = getPageContent().news;
+  const articles = getNews();
+
   return (
     <div className="pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <SectionTitle subtitle="Tin tức" title="Tin tức & Sự kiện" />
+        <SectionTitle subtitle={newsHeading.subtitle} title={newsHeading.title ?? "Tin tức & Sự kiện"} />
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
           {articles.map((article) => (

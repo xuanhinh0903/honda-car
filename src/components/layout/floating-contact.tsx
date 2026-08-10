@@ -3,10 +3,8 @@
 import { motion } from "framer-motion";
 import { Phone } from "lucide-react";
 import { ZaloIcon } from "@/components/icons/zalo-icon";
-import { getDealership } from "@/lib/data";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
-
-const dealership = getDealership();
+import type { DealershipInfo } from "@/lib/types";
 
 function FacebookIcon({ className }: { className?: string }) {
   return (
@@ -16,7 +14,11 @@ function FacebookIcon({ className }: { className?: string }) {
   );
 }
 
-export function FloatingContact() {
+export function FloatingContact({
+  dealership,
+}: {
+  dealership: DealershipInfo;
+}) {
   const reducedMotion = useReducedMotion();
 
   const contacts = [

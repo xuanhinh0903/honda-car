@@ -5,7 +5,6 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { CarImage } from "@/components/ui/car-image";
 import { formatVND } from "@/lib/format";
-import { getCarThumbnail } from "@/lib/data";
 import type { CarIndexItem } from "@/lib/types";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
 import { useCountUp } from "@/hooks/use-count-up";
@@ -13,7 +12,7 @@ import { useEffect, useRef, useState } from "react";
 
 interface CarCardProps {
   car: CarIndexItem;
-  thumbnail?: string;
+  thumbnail: string;
 }
 
 function PriceDisplay({ price }: { price: number }) {
@@ -53,7 +52,7 @@ export function CarCard({ car, thumbnail }: CarCardProps) {
       <div className="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 border border-border/50">
         <div className="relative aspect-[16/10] overflow-hidden bg-charcoal-light">
           <CarImage
-            src={thumbnail ?? getCarThumbnail(car.slug)}
+            src={thumbnail}
             alt={car.name}
             fill
             className="transition-transform duration-500 group-hover:scale-105"

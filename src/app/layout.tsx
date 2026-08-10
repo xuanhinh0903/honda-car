@@ -5,7 +5,12 @@ import "./globals.css";
 import { ConditionalSiteLayout } from "@/components/layout/conditional-site-layout";
 import { StaticSplash } from "@/components/layout/static-splash";
 import { LocalBusinessJsonLd } from "@/components/seo/json-ld";
-import { getDealership } from "@/lib/data-server";
+import {
+  getCars,
+  getDealership,
+  getNavigation,
+  getNews,
+} from "@/lib/data-server";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -18,45 +23,52 @@ const jakarta = Plus_Jakarta_Sans({
   weight: ["400", "500", "600", "700", "800"],
 });
 
-const dealership = getDealership();
+export async function generateMetadata(): Promise<Metadata> {
+  const dealership = getDealership();
 
-export const metadata: Metadata = {
-  metadataBase: new URL("https://hondatiendat.vn"),
-  title: {
-    default: `${dealership.name} | Giá Xe Honda Tốt Nhất Hà Nội`,
-    template: `%s | ${dealership.name}`,
-  },
-  description: `${dealership.tagline}. Hotline: ${dealership.hotlineDisplay}. Địa chỉ: ${dealership.address}`,
-  keywords: [
-    "Honda",
-    "ô tô Honda",
-    "Honda Hà Nội",
-    "Honda Tiến Đạt",
-    "giá xe Honda",
-    "đại lý Honda",
-  ],
-  openGraph: {
-    type: "website",
-    locale: "vi_VN",
-    siteName: dealership.name,
-    title: `${dealership.name} | Giá Xe Honda Tốt Nhất Hà Nội`,
-    description: dealership.tagline,
-    images: ["/logo.png"],
-  },
-  icons: {
-    icon: "/favicon.png",
-    shortcut: "/favicon.png",
-    apple: "/apple-icon.png",
-  },
-};
+  return {
+    metadataBase: new URL("https://hondatiendat.vn"),
+    title: {
+      default: `${dealership.name} | Giá Xe Honda Tốt Nhất Hà Nội`,
+      template: `%s | ${dealership.name}`,
+    },
+    description: `${dealership.tagline}. Hotline: ${dealership.hotlineDisplay}. Địa chỉ: ${dealership.address}`,
+    keywords: [
+      "Honda",
+      "ô tô Honda",
+      "Honda Hà Nội",
+      "Honda Tiến Đạt",
+      "giá xe Honda",
+      "đại lý Honda",
+    ],
+    openGraph: {
+      type: "website",
+      locale: "vi_VN",
+      siteName: dealership.name,
+      title: `${dealership.name} | Giá Xe Honda Tốt Nhất Hà Nội`,
+      description: dealership.tagline,
+      images: ["/logo.png"],
+    },
+    icons: {
+      icon: "/favicon.png",
+      shortcut: "/favicon.png",
+      apple: "/apple-icon.png",
+    },
+  };
+}
 
 export const dynamic = "force-dynamic";
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const dealership = getDealership();
+  const navigation = getNavigation();
+  const cars = getCars();
+  const news = getNews().slice(0, 5);
+
   return (
     <html
       lang="vi"
@@ -65,9 +77,16 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         <Script src="/splash-init.js" strategy="beforeInteractive" />
-        <StaticSplash />
+        <StaticSplash dealership={dealership} />
         <LocalBusinessJsonLd />
-        <ConditionalSiteLayout>{children}</ConditionalSiteLayout>
+        <ConditionalSiteLayout
+          dealership={dealership}
+          navigation={navigation}
+          cars={cars}
+          news={news}
+        >
+          {children}
+        </ConditionalSiteLayout>
       </body>
     </html>
   );

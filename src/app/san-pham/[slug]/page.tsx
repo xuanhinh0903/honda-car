@@ -5,6 +5,7 @@ import { Car, Phone } from "lucide-react";
 import {
   getAllCarSlugs,
   getCarBySlug,
+  getCarThumbnail,
   getCars,
 } from "@/lib/data-server";
 import { formatVND, formatPhone } from "@/lib/format";
@@ -15,8 +16,6 @@ import { CarCard } from "@/components/cars/car-card";
 import { Button } from "@/components/ui/button";
 import { FadeIn } from "@/components/motion/fade-in";
 import { Badge } from "@/components/ui/badge";
-
-const dealership = getDealership();
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -44,12 +43,17 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CarDetailPage({ params }: PageProps) {
   const { slug } = await params;
+  const dealership = getDealership();
   const car = getCarBySlug(slug);
   if (!car) notFound();
 
   const relatedCars = getCars()
     .filter((c) => c.slug !== slug && c.category === car.category)
     .slice(0, 3);
+
+  const relatedThumbnails = Object.fromEntries(
+    relatedCars.map((c) => [c.slug, getCarThumbnail(c.slug)])
+  );
 
   return (
     <div className="pt-24 pb-16">
@@ -104,7 +108,11 @@ export default async function CarDetailPage({ params }: PageProps) {
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {relatedCars.map((related) => (
-                <CarCard key={related.slug} car={related} />
+                <CarCard
+                  key={related.slug}
+                  car={related}
+                  thumbnail={relatedThumbnails[related.slug]}
+                />
               ))}
             </div>
           </div>

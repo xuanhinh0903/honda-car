@@ -8,12 +8,14 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { QuoteForm } from "@/components/forms/quote-form";
+import type { CarIndexItem } from "@/lib/types";
 
 interface QuoteDialogProps {
   trigger: React.ReactElement;
+  cars: CarIndexItem[];
 }
 
-export function QuoteDialog({ trigger }: QuoteDialogProps) {
+export function QuoteDialog({ trigger, cars }: QuoteDialogProps) {
   return (
     <Dialog>
       <DialogTrigger render={trigger} />
@@ -24,7 +26,7 @@ export function QuoteDialog({ trigger }: QuoteDialogProps) {
         <p className="text-sm text-muted-foreground mb-4">
           Vui lòng điền đầy đủ thông tin để nhận báo giá xe Honda!
         </p>
-        <QuoteForm />
+        <QuoteForm cars={cars} />
       </DialogContent>
     </Dialog>
   );

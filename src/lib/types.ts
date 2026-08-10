@@ -110,3 +110,89 @@ export interface Promotion {
   badge: string;
   validUntil: string;
 }
+
+export interface CtaLink {
+  label: string;
+  href: string;
+}
+
+export interface SectionHeading {
+  subtitle?: string;
+  title?: string;
+}
+
+export interface HomeHeroContent {
+  image: string;
+  description: string;
+  hotlineLabel: string;
+  primaryCta: CtaLink;
+  secondaryCta: CtaLink;
+  tertiaryCta: CtaLink;
+}
+
+export interface HomeContent {
+  hero: HomeHeroContent;
+  dealerIntro: SectionHeading;
+  showcase: SectionHeading;
+  process: SectionHeading;
+  video: SectionHeading & { youtubeId: string };
+  newsPreview: SectionHeading;
+  cta: {
+    title: string;
+    description: string;
+    primaryCta: CtaLink;
+    secondaryCta: CtaLink;
+  };
+}
+
+export interface AboutFeature {
+  title: string;
+  description: string;
+}
+
+export interface AboutContent {
+  subtitle: string;
+  title: string;
+  features: AboutFeature[];
+}
+
+export interface ProductsContent {
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+export interface DeliveryContent {
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+export interface NewsPageContent {
+  subtitle: string;
+  title: string;
+}
+
+export interface ContactContent {
+  subtitle: string;
+  title: string;
+  workingHours: string;
+  mapEmbedUrl: string;
+}
+
+export interface SubpageContent {
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+export interface PageContent {
+  home: HomeContent;
+  about: AboutContent;
+  products: ProductsContent;
+  delivery: DeliveryContent;
+  news: NewsPageContent;
+  contact: ContactContent;
+  testDrive: SubpageContent;
+  rollingCost: SubpageContent;
+}

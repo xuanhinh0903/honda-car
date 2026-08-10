@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { ArrowRight, Calendar } from "lucide-react";
-import { getFeaturedNews } from "@/lib/data";
 import { formatDate } from "@/lib/format";
 import { SectionTitle } from "@/components/motion/section-reveal";
 import {
@@ -9,8 +8,7 @@ import {
 } from "@/components/motion/stagger-container";
 import { CarImage } from "@/components/ui/car-image";
 import { Badge } from "@/components/ui/badge";
-
-const news = getFeaturedNews(4);
+import type { NewsIndexItem, SectionHeading } from "@/lib/types";
 
 const categoryLabels: Record<string, string> = {
   "khuyen-mai": "Khuyến mãi",
@@ -20,14 +18,17 @@ const categoryLabels: Record<string, string> = {
   "phan-tich": "Phân tích",
 };
 
-export function NewsPreview() {
+export function NewsPreview({
+  news,
+  heading,
+}: {
+  news: NewsIndexItem[];
+  heading: SectionHeading;
+}) {
   return (
     <section className="py-20 bg-warm-white">
       <div className="container mx-auto px-4">
-        <SectionTitle
-          subtitle="Tin tức"
-          title="Tin tức & Sự kiện"
-        />
+        <SectionTitle subtitle={heading.subtitle} title={heading.title ?? "Tin tức & Sự kiện"} />
 
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {news.map((article) => (
@@ -51,7 +52,7 @@ export function NewsPreview() {
                       {categoryLabels[article.category] ?? article.category}
                     </Badge>
                     <span className="text-xs text-muted-foreground flex items-center gap-1">
-                      <Calendar className="w-3 h-3" />
+                      <Calendar className="w-3.5 h-3.5" />
                       {formatDate(article.date)}
                     </span>
                   </div>

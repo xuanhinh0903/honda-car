@@ -11,17 +11,20 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Input } from "@/components/ui/input";
-import { getCars, getDealership } from "@/lib/data";
 import { formatVND } from "@/lib/format";
-
-const cars = getCars();
-const dealership = getDealership();
+import type { CarIndexItem, DealershipInfo } from "@/lib/types";
 
 const REGISTRATION_FEE_RATE = 0.1;
 const INSURANCE_RATE = 0.015;
 const SERVICE_FEE = 5_000_000;
 
-export function RollingCostCalculator() {
+export function RollingCostCalculator({
+  cars,
+  dealership,
+}: {
+  cars: CarIndexItem[];
+  dealership: DealershipInfo;
+}) {
   const [carSlug, setCarSlug] = useState("");
   const [variantPrice, setVariantPrice] = useState(0);
   const [location, setLocation] = useState("hanoi");

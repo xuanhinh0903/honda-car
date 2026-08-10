@@ -1,0 +1,105 @@
+{
+  "home": {
+    "hero": {
+      "image": "/images/hero/test-xe.png",
+      "description": "Đại lý 5S quy mô lớn nhất miền Bắc — showroom hiện đại, 500+ nhân viên chuyên nghiệp",
+      "hotlineLabel": "Hotline tư vấn",
+      "primaryCta": {
+        "label": "Đăng ký lái thử",
+        "href": "/dang-ky-lai-thu"
+      },
+      "secondaryCta": {
+        "label": "Bảng giá xe mới nhất",
+        "href": "/bang-gia"
+      },
+      "tertiaryCta": {
+        "label": "Tính lãi trả góp",
+        "href": "/tinh-phi-lan-banh"
+      }
+    },
+    "dealerIntro": {
+      "subtitle": "Về chúng tôi"
+    },
+    "showcase": {
+      "subtitle": "Sản phẩm",
+      "title": "Các dòng xe Honda Tiến Đạt"
+    },
+    "process": {
+      "subtitle": "Hướng dẫn",
+      "title": "Quy trình mua xe"
+    },
+    "video": {
+      "subtitle": "Video",
+      "title": "Khám phá Honda Tiến Đạt",
+      "youtubeId": "9vQnKO_2kK4"
+    },
+    "newsPreview": {
+      "subtitle": "Tin tức",
+      "title": "Tin tức & Sự kiện"
+    },
+    "cta": {
+      "title": "Sẵn sàng trải nghiệm xe Honda?",
+      "description": "Đăng ký lái thử miễn phí hoặc gọi hotline",
+      "primaryCta": {
+        "label": "Đăng ký lái thử",
+        "href": "/dang-ky-lai-thu"
+      },
+      "secondaryCta": {
+        "label": "Gọi ngay",
+        "href": "tel"
+      }
+    }
+  },
+  "about": {
+    "subtitle": "Về chúng tôi",
+    "title": "Honda Tiến Đạt",
+    "features": [
+      {
+        "title": "Showroom hiện đại",
+        "description": "Diện tích showroom với phòng trưng bày và kho xe rộng rãi"
+      },
+      {
+        "title": "3 tầng dịch vụ",
+        "description": "Trung tâm sửa chữa và bảo dưỡng ô tô đạt chuẩn Honda"
+      },
+      {
+        "title": "Đội ngũ chuyên nghiệp",
+        "description": "Hơn 500 cán bộ nhân viên giàu kinh nghiệm"
+      },
+      {
+        "title": "Tiêu chuẩn 5S",
+        "description": "Đạt tiêu chuẩn đại lý 5S của Honda Việt Nam"
+      }
+    ]
+  },
+  "products": {
+    "subtitle": "Sản phẩm",
+    "title": "Các dòng xe Honda",
+    "description": "Khám phá đầy đủ các dòng xe Honda chính hãng với giá tốt nhất tại Hà Nội"
+  },
+  "delivery": {
+    "subtitle": "Khách hàng",
+    "title": "Bàn giao xe",
+    "description": "Những khoảnh khắc hạnh phúc khi khách hàng nhận xe tại Honda Tiến Đạt"
+  },
+  "news": {
+    "subtitle": "Tin tức",
+    "title": "Tin tức & Sự kiện"
+  },
+  "contact": {
+    "subtitle": "Liên hệ",
+    "title": "Kết nối với chúng tôi",
+    "workingHours": "Thứ 2 - Chủ nhật: 8:00 - 18:00",
+    "mapEmbedUrl": "https://maps.google.com/maps?q=Honda+An+Khanh+Hanoi&output=embed"
+  },
+  "testDrive": {
+    "subtitle": "Trải nghiệm",
+    "title": "Đăng ký lái thử",
+    "description": "Trải nghiệm cảm giác lái xe Honda chính hãng. Điền form bên dưới để đặt lịch lái thử miễn phí."
+  },
+  "rollingCost": {
+    "subtitle": "Công cụ",
+    "title": "Tính phí lăn bánh",
+    "description": "Ước tính tổng chi phí lăn bánh bao gồm thuế, bảo hiểm và các khoản phí khác"
+  }
+}

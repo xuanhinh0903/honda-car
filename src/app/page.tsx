@@ -5,17 +5,45 @@ import { PurchaseProcess } from "@/components/sections/purchase-process";
 import { VideoSection } from "@/components/sections/video-section";
 import { NewsPreview } from "@/components/sections/news-preview";
 import { CtaBanner } from "@/components/sections/cta-banner";
+import {
+  getCarThumbnail,
+  getDealership,
+  getFeaturedCars,
+  getFeaturedNews,
+  getPageContent,
+  getProcessSteps,
+} from "@/lib/data-server";
 
 export default function Home() {
+  const dealership = getDealership();
+  const pageContent = getPageContent();
+  const featuredCars = getFeaturedCars();
+  const featuredNews = getFeaturedNews(4);
+  const processSteps = getProcessSteps();
+
+  const thumbnails = Object.fromEntries(
+    featuredCars.map((car) => [car.slug, getCarThumbnail(car.slug)])
+  );
+
   return (
     <>
-      <HeroSection />
-      <DealerIntro />
-      <CarShowcase />
-      <PurchaseProcess />
-      <VideoSection />
-      <NewsPreview />
-      <CtaBanner />
+      <HeroSection dealership={dealership} hero={pageContent.home.hero} />
+      <DealerIntro
+        dealership={dealership}
+        heading={pageContent.home.dealerIntro}
+      />
+      <CarShowcase
+        cars={featuredCars}
+        thumbnails={thumbnails}
+        heading={pageContent.home.showcase}
+      />
+      <PurchaseProcess
+        steps={processSteps}
+        heading={pageContent.home.process}
+      />
+      <VideoSection video={pageContent.home.video} />
+      <NewsPreview news={featuredNews} heading={pageContent.home.newsPreview} />
+      <CtaBanner dealership={dealership} cta={pageContent.home.cta} />
     </>
   );
 }

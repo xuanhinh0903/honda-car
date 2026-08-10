@@ -4,10 +4,9 @@ import { useLayoutEffect, useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
-import { getDealership } from "@/lib/data";
 import { useReducedMotion } from "@/hooks/use-reduced-motion";
+import type { DealershipInfo } from "@/lib/types";
 
-const dealership = getDealership();
 export const SESSION_KEY = "honda-tien-dat-session-loader";
 const MIN_DURATION_MS = 2200;
 const COMPLETE_MS = 400;
@@ -25,7 +24,13 @@ function setSplashActive(active: boolean) {
   document.documentElement.classList.toggle("splash-active", active);
 }
 
-export function PageLoader({ children }: { children: React.ReactNode }) {
+export function PageLoader({
+  children,
+  dealership,
+}: {
+  children: React.ReactNode;
+  dealership: DealershipInfo;
+}) {
   const pathname = usePathname();
   const reducedMotion = useReducedMotion();
   const [status, setStatus] = useState<LoaderStatus>("idle");

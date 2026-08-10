@@ -1,33 +1,84 @@
 {
   "items": [
-    { "label": "Trang chủ", "href": "/" },
-    { "label": "Giới thiệu", "href": "/gioi-thieu" },
+    {
+      "label": "Trang chủ",
+      "href": "/"
+    },
+    {
+      "label": "Giới thiệu",
+      "href": "/gioi-thieu"
+    },
     {
       "label": "Sản phẩm",
       "href": "/san-pham",
       "children": [
-        { "label": "CR-V", "href": "/san-pham/cr-v" },
-        { "label": "Civic", "href": "/san-pham/civic" },
-        { "label": "City", "href": "/san-pham/city" },
-        { "label": "HR-V", "href": "/san-pham/hr-v" },
-        { "label": "BR-V", "href": "/san-pham/br-v" },
-        { "label": "Brio", "href": "/san-pham/brio" }
+        {
+          "label": "CR-V",
+          "href": "/san-pham/cr-v"
+        },
+        {
+          "label": "Civic",
+          "href": "/san-pham/civic"
+        },
+        {
+          "label": "City",
+          "href": "/san-pham/city"
+        },
+        {
+          "label": "HR-V",
+          "href": "/san-pham/hr-v"
+        },
+        {
+          "label": "BR-V",
+          "href": "/san-pham/br-v"
+        },
+        {
+          "label": "Brio",
+          "href": "/san-pham/brio"
+        }
       ]
     },
-    { "label": "Bảng Giá Xe", "href": "/bang-gia" },
-    { "label": "Bàn Giao Xe", "href": "/ban-giao-xe" },
-    { "label": "Tính phí lăn bánh", "href": "/tinh-phi-lan-banh" },
+    {
+      "label": "Bảng Giá Xe",
+      "href": "/bang-gia"
+    },
+    {
+      "label": "Bàn Giao Xe",
+      "href": "/ban-giao-xe"
+    },
+    {
+      "label": "Tính phí lăn bánh",
+      "href": "/tinh-phi-lan-banh"
+    },
     {
       "label": "Tin Tức Hot",
       "href": "/tin-tuc",
       "children": [
-        { "label": "Chương trình khuyến mại", "href": "/tin-tuc?category=khuyen-mai" },
-        { "label": "Hỗ trợ khách hàng", "href": "/tin-tuc?category=ho-tro" },
-        { "label": "Sự kiện", "href": "/tin-tuc?category=su-kien" },
-        { "label": "Kinh nghiệm lái xe", "href": "/tin-tuc?category=kinh-nghiem" },
-        { "label": "Phân Tích Xe Honda", "href": "/tin-tuc?category=phan-tich" }
+        {
+          "label": "Chương trình khuyến mại",
+          "href": "/tin-tuc?category=khuyen-mai"
+        },
+        {
+          "label": "Hỗ trợ khách hàng",
+          "href": "/tin-tuc?category=ho-tro"
+        },
+        {
+          "label": "Sự kiện",
+          "href": "/tin-tuc?category=su-kien"
+        },
+        {
+          "label": "Kinh nghiệm lái xe",
+          "href": "/tin-tuc?category=kinh-nghiem"
+        },
+        {
+          "label": "Phân Tích Xe Honda",
+          "href": "/tin-tuc?category=phan-tich"
+        }
       ]
     },
-    { "label": "Liên hệ", "href": "/lien-he" }
+    {
+      "label": "Liên hệ",
+      "href": "/lien-he"
+    }
   ]
 }

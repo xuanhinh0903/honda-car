@@ -4,12 +4,12 @@
   "tagline": "SUV hybrid cao cấp",
   "category": "SUV",
   "priceFrom": 998000000,
-  "heroImage": "/images/cars/crv-hero.jpg",
-  "thumbnail": "/images/cars/crv-thumb.jpg",
+  "heroImage": "/images/cars/o-t-1.webp",
+  "thumbnail": "/images/cars/o-t-1.webp",
   "gallery": [
-    "/images/cars/crv-hero.jpg",
-    "/images/cars/crv-interior.jpg",
-    "/images/cars/crv-side.jpg"
+    "/images/cars/o-t-1.webp",
+    "/images/cars/o-t2.webp",
+    "/images/cars/o-t3.png"
   ],
   "description": "Honda CR-V e:HEV Rs kết hợp động cơ hybrid tiên tiến với không gian SUV rộng rãi, mang đến trải nghiệm lái êm ái và tiết kiệm nhiên liệu vượt trội.",
   "highlights": [
@@ -19,9 +19,24 @@
     "AWD thông minh"
   ],
   "variants": [
-    { "name": "G", "price": 998000000, "engine": "2.0L e:HEV", "transmission": "e-CVT" },
-    { "name": "L", "price": 1099000000, "engine": "2.0L e:HEV", "transmission": "e-CVT" },
-    { "name": "RS", "price": 1199000000, "engine": "2.0L e:HEV", "transmission": "e-CVT" }
+    {
+      "name": "G",
+      "price": 998000000,
+      "engine": "2.0L e:HEV",
+      "transmission": "e-CVT"
+    },
+    {
+      "name": "L",
+      "price": 1099000000,
+      "engine": "2.0L e:HEV",
+      "transmission": "e-CVT"
+    },
+    {
+      "name": "RS",
+      "price": 1199000000,
+      "engine": "2.0L e:HEV",
+      "transmission": "e-CVT"
+    }
   ],
   "specs": {
     "engine": "2.0L e:HEV",

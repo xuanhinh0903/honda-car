@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getDeliveryImages } from "@/lib/data-server";
+import { getDeliveryImages, getPageContent } from "@/lib/data-server";
 import { SectionTitle } from "@/components/motion/section-reveal";
 import { StaggerContainer, StaggerItem } from "@/components/motion/stagger-container";
 import { CarImage } from "@/components/ui/car-image";
@@ -9,18 +9,16 @@ export const metadata: Metadata = {
   description: "Hình ảnh lễ bàn giao xe tại Honda Tiến Đạt",
 };
 
-const images = getDeliveryImages();
-
 export default function BanGiaoXePage() {
+  const deliveryHeading = getPageContent().delivery;
+  const images = getDeliveryImages();
+
   return (
     <div className="pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <SectionTitle
-          subtitle="Khách hàng"
-          title="Bàn giao xe"
-        />
+        <SectionTitle subtitle={deliveryHeading.subtitle} title={deliveryHeading.title ?? "Bàn giao xe"} />
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Những khoảnh khắc hạnh phúc khi khách hàng nhận xe tại Honda Tiến Đạt
+          {deliveryHeading.description}
         </p>
 
         <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

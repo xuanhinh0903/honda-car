@@ -1,36 +1,37 @@
 import { Building2, Users, Layers } from "lucide-react";
-import { getDealership } from "@/lib/data";
 import { SectionTitle } from "@/components/motion/section-reveal";
 import { FadeIn } from "@/components/motion/fade-in";
-
-const dealership = getDealership();
+import type { DealershipInfo, SectionHeading } from "@/lib/types";
 
 const stats = [
   {
     icon: Building2,
-    value: dealership.stats.area,
     label: "Diện tích showroom",
+    value: (d: DealershipInfo) => d.stats.area,
   },
   {
     icon: Layers,
-    value: `${dealership.stats.floors} tầng`,
     label: "Dịch vụ & trưng bày",
+    value: (d: DealershipInfo) => `${d.stats.floors} tầng`,
   },
   {
     icon: Users,
-    value: `${dealership.stats.staff}+`,
     label: "Nhân viên chuyên nghiệp",
+    value: (d: DealershipInfo) => `${d.stats.staff}+`,
   },
 ];
 
-export function DealerIntro() {
+export function DealerIntro({
+  dealership,
+  heading,
+}: {
+  dealership: DealershipInfo;
+  heading: SectionHeading;
+}) {
   return (
     <section className="py-20 bg-pearl">
       <div className="container mx-auto px-4">
-        <SectionTitle
-          subtitle="Về chúng tôi"
-          title={dealership.name}
-        />
+        <SectionTitle subtitle={heading.subtitle} title={heading.title ?? dealership.name} />
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <FadeIn>
@@ -53,7 +54,9 @@ export function DealerIntro() {
                   className="bg-white rounded-2xl p-5 text-center shadow-sm border border-border/50 hover:shadow-md transition-shadow"
                 >
                   <stat.icon className="w-8 h-8 text-honda-red mx-auto mb-3" />
-                  <p className="font-bold text-xl text-charcoal">{stat.value}</p>
+                  <p className="font-bold text-xl text-charcoal">
+                    {stat.value(dealership)}
+                  </p>
                   <p className="text-xs text-muted-foreground mt-1">
                     {stat.label}
                   </p>

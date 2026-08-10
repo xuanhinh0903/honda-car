@@ -12,11 +12,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getCars } from "@/lib/data";
+import type { CarIndexItem } from "@/lib/types";
 
-const cars = getCars();
-
-export function TestDriveForm() {
+export function TestDriveForm({ cars }: { cars: CarIndexItem[] }) {
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({
     name: "",

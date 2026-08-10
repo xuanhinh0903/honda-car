@@ -1,9 +1,11 @@
 import Image from "next/image";
-import { getDealership } from "@/lib/data";
+import type { DealershipInfo } from "@/lib/types";
 
-const dealership = getDealership();
-
-export function StaticSplash() {
+export function StaticSplash({
+  dealership,
+}: {
+  dealership: DealershipInfo;
+}) {
   return (
     <div
       id="splash-static"

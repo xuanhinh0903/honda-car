@@ -2,11 +2,29 @@
   "title": "Bàn giao xe",
   "description": "Hình ảnh lễ bàn giao xe tại Honda Tiến Đạt",
   "images": [
-    { "src": "/images/delivery/delivery-1.jpg", "caption": "Bàn giao Honda City cho khách hàng tại Hà Nội" },
-    { "src": "/images/delivery/delivery-2.jpg", "caption": "Lễ bàn giao Honda CR-V e:HEV Rs" },
-    { "src": "/images/delivery/delivery-3.jpg", "caption": "Khách hàng nhận Honda Civic RS" },
-    { "src": "/images/delivery/delivery-4.jpg", "caption": "Bàn giao Honda HR-V cho gia đình" },
-    { "src": "/images/delivery/delivery-5.jpg", "caption": "Lễ bàn giao Honda BR-V 7 chỗ" },
-    { "src": "/images/delivery/delivery-6.jpg", "caption": "Khách hàng hài lòng với Honda City" }
+    {
+      "src": "/images/delivery/delivery-1.jpg",
+      "caption": "Bàn giao Honda City cho khách hàng tại Hà Nội"
+    },
+    {
+      "src": "/images/delivery/delivery-2.jpg",
+      "caption": "Lễ bàn giao Honda CR-V e:HEV Rs"
+    },
+    {
+      "src": "/images/delivery/delivery-3.jpg",
+      "caption": "Khách hàng nhận Honda Civic RS"
+    },
+    {
+      "src": "/images/delivery/delivery-4.jpg",
+      "caption": "Bàn giao Honda HR-V cho gia đình"
+    },
+    {
+      "src": "/images/delivery/delivery-5.jpg",
+      "caption": "Lễ bàn giao Honda BR-V 7 chỗ"
+    },
+    {
+      "src": "/images/delivery/delivery-6.jpg",
+      "caption": "Khách hàng hài lòng với Honda City"
+    }
   ]
 }

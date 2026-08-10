@@ -1,114 +1,112 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { adminFetch } from "./admin-utils";
+import { adminToast } from "./admin-toast";
+import { AdminField, AdminLoading, AdminSaveBar } from "./admin-ui";
 import type { DealershipInfo } from "@/lib/types";
-
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="space-y-2">
-      <Label>{label}</Label>
-      {children}
-    </div>
-  );
-}
 
 export function DealershipSection() {
   const [data, setData] = useState<DealershipInfo | null>(null);
-  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
+  const [saving, setSaving] = useState(false);
 
   useEffect(() => {
     adminFetch<DealershipInfo>("/api/admin/data?key=dealership")
       .then(setData)
-      .catch((err: Error) => setMessage(err.message))
+      .catch((err: Error) =>
+        adminToast.error("Không tải được dữ liệu", err.message)
+      )
       .finally(() => setLoading(false));
   }, []);
 
   async function handleSave() {
     if (!data) return;
-    setMessage("");
+    setSaving(true);
     try {
       await adminFetch("/api/admin/data", {
         method: "PUT",
         body: JSON.stringify({ key: "dealership", data }),
       });
-      setMessage("Đã lưu thông tin đại lý.");
+      adminToast.success("Đã lưu thông tin đại lý", "Website sẽ cập nhật ngay.");
     } catch (err) {
-      setMessage(err instanceof Error ? err.message : "Lỗi");
+      adminToast.error(
+        "Lưu thất bại",
+        err instanceof Error ? err.message : "Vui lòng thử lại"
+      );
+    } finally {
+      setSaving(false);
     }
   }
 
-  if (loading || !data) {
-    return <p className="text-sm text-muted-foreground">Đang tải...</p>;
-  }
+  if (loading || !data) return <AdminLoading />;
 
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2">
-        <Field label="Tên đại lý">
+      <div className="grid gap-5 md:grid-cols-2">
+        <AdminField label="Tên đại lý">
           <Input
             value={data.name}
             onChange={(e) => setData({ ...data, name: e.target.value })}
+            className="h-10"
           />
-        </Field>
-        <Field label="Slogan / Tagline">
+        </AdminField>
+        <AdminField label="Slogan / Tagline">
           <Input
             value={data.tagline}
             onChange={(e) => setData({ ...data, tagline: e.target.value })}
+            className="h-10"
           />
-        </Field>
-        <Field label="Địa chỉ">
+        </AdminField>
+        <AdminField label="Địa chỉ">
           <Input
             value={data.address}
             onChange={(e) => setData({ ...data, address: e.target.value })}
+            className="h-10"
           />
-        </Field>
-        <Field label="Hotline (số)">
+        </AdminField>
+        <AdminField label="Hotline (số)">
           <Input
             value={data.hotline}
             onChange={(e) => setData({ ...data, hotline: e.target.value })}
+            className="h-10"
           />
-        </Field>
-        <Field label="Hotline hiển thị">
+        </AdminField>
+        <AdminField label="Hotline hiển thị">
           <Input
             value={data.hotlineDisplay}
             onChange={(e) =>
               setData({ ...data, hotlineDisplay: e.target.value })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Email">
+        </AdminField>
+        <AdminField label="Email">
           <Input
             value={data.email}
             onChange={(e) => setData({ ...data, email: e.target.value })}
+            className="h-10"
           />
-        </Field>
-        <Field label="Giám đốc / Tư vấn">
+        </AdminField>
+        <AdminField label="Giám đốc / Tư vấn">
           <Input
             value={data.director}
             onChange={(e) => setData({ ...data, director: e.target.value })}
+            className="h-10"
           />
-        </Field>
-        <Field label="Chức danh">
+        </AdminField>
+        <AdminField label="Chức danh">
           <Input
             value={data.directorTitle}
             onChange={(e) =>
               setData({ ...data, directorTitle: e.target.value })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Facebook cá nhân">
+        </AdminField>
+        <AdminField label="Facebook cá nhân">
           <Input
             value={data.social.facebook}
             onChange={(e) =>
@@ -117,9 +115,10 @@ export function DealershipSection() {
                 social: { ...data.social, facebook: e.target.value },
               })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Facebook Fanpage">
+        </AdminField>
+        <AdminField label="Facebook Fanpage">
           <Input
             value={data.social.facebookPage}
             onChange={(e) =>
@@ -128,9 +127,10 @@ export function DealershipSection() {
                 social: { ...data.social, facebookPage: e.target.value },
               })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Zalo">
+        </AdminField>
+        <AdminField label="Zalo">
           <Input
             value={data.social.zalo}
             onChange={(e) =>
@@ -139,9 +139,10 @@ export function DealershipSection() {
                 social: { ...data.social, zalo: e.target.value },
               })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="YouTube">
+        </AdminField>
+        <AdminField label="YouTube">
           <Input
             value={data.social.youtube}
             onChange={(e) =>
@@ -150,9 +151,10 @@ export function DealershipSection() {
                 social: { ...data.social, youtube: e.target.value },
               })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Diện tích showroom">
+        </AdminField>
+        <AdminField label="Diện tích showroom">
           <Input
             value={data.stats.area}
             onChange={(e) =>
@@ -161,9 +163,10 @@ export function DealershipSection() {
                 stats: { ...data.stats, area: e.target.value },
               })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Số tầng">
+        </AdminField>
+        <AdminField label="Số tầng">
           <Input
             type="number"
             value={data.stats.floors}
@@ -173,9 +176,10 @@ export function DealershipSection() {
                 stats: { ...data.stats, floors: Number(e.target.value) },
               })
             }
+            className="h-10"
           />
-        </Field>
-        <Field label="Nhân sự">
+        </AdminField>
+        <AdminField label="Nhân sự">
           <Input
             type="number"
             value={data.stats.staff}
@@ -185,18 +189,19 @@ export function DealershipSection() {
                 stats: { ...data.stats, staff: Number(e.target.value) },
               })
             }
+            className="h-10"
           />
-        </Field>
+        </AdminField>
       </div>
 
-      <Field label="Giới thiệu ngắn">
+      <AdminField label="Giới thiệu ngắn">
         <Textarea
           rows={3}
           value={data.intro}
           onChange={(e) => setData({ ...data, intro: e.target.value })}
         />
-      </Field>
-      <Field label="Giới thiệu mở rộng">
+      </AdminField>
+      <AdminField label="Giới thiệu mở rộng">
         <Textarea
           rows={4}
           value={data.introExtended}
@@ -204,12 +209,9 @@ export function DealershipSection() {
             setData({ ...data, introExtended: e.target.value })
           }
         />
-      </Field>
+      </AdminField>
 
-      <div className="flex items-center gap-3">
-        <Button onClick={handleSave}>Lưu thay đổi</Button>
-        {message && <p className="text-sm text-muted-foreground">{message}</p>}
-      </div>
+      <AdminSaveBar onSave={handleSave} saving={saving} />
     </div>
   );
 }

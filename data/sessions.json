@@ -1,3 +1,20 @@
 {
-  "sessions": {}
+  "sessions": {
+    "vu1OG6FXoCjJ2d97LqC0G3awR92vmzfVcMYz80uZMZA": {
+      "username": "admin",
+      "exp": 1786937161778
+    },
+    "VJVaQCeArLm8CEGf31QDk_gv0_40xoESgQE0PW1CYus": {
+      "username": "admin",
+      "exp": 1786937292112
+    },
+    "5Kh33i_l_fjJUkgBB-dUnFDvbMBRQKFHxPelIZ_jn3M": {
+      "username": "admin",
+      "exp": 1786938763738
+    },
+    "ucYsm_FF0p6RtBd5VF8Z3CLRz9z7CLIcEGl45HK9_IQ": {
+      "username": "admin",
+      "exp": 1786939017672
+    }
+  }
 }

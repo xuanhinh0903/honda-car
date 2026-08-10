@@ -8,6 +8,7 @@ import type {
   NavItem,
   NewsArticle,
   NewsIndexItem,
+  PageContent,
   PricingCar,
   ProcessStep,
   Promotion,
@@ -167,6 +168,14 @@ export function saveNavigation(items: NavItem[]) {
   writeDataJson({ items }, "navigation.json");
 }
 
+export function getPageContent(): PageContent {
+  return readDataJson<PageContent>("pages.json");
+}
+
+export function savePageContent(content: PageContent) {
+  writeDataJson(content, "pages.json");
+}
+
 export const ADMIN_DATA_KEYS = [
   "dealership",
   "navigation",
@@ -176,6 +185,7 @@ export const ADMIN_DATA_KEYS = [
   "delivery",
   "process",
   "promotions",
+  "pages",
 ] as const;
 
 export type AdminDataKey = (typeof ADMIN_DATA_KEYS)[number];

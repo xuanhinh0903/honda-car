@@ -1,10 +1,46 @@
 {
   "cars": [
-    { "slug": "cr-v", "name": "CR-V e:HEV Rs", "priceFrom": 998000000, "category": "SUV", "featured": true },
-    { "slug": "city", "name": "City", "priceFrom": 499000000, "category": "Sedan", "featured": true },
-    { "slug": "civic", "name": "Civic", "priceFrom": 730000000, "category": "Sedan", "featured": true },
-    { "slug": "hr-v", "name": "HR-V", "priceFrom": 669000000, "category": "SUV", "featured": true },
-    { "slug": "br-v", "name": "BR-V", "priceFrom": 629000000, "category": "SUV", "featured": false },
-    { "slug": "brio", "name": "Brio", "priceFrom": 419000000, "category": "Hatchback", "featured": false }
+    {
+      "slug": "city",
+      "name": "City",
+      "priceFrom": 499000000,
+      "category": "Sedan",
+      "featured": true
+    },
+    {
+      "slug": "civic",
+      "name": "Civic",
+      "priceFrom": 730000000,
+      "category": "Sedan",
+      "featured": true
+    },
+    {
+      "slug": "hr-v",
+      "name": "HR-V",
+      "priceFrom": 669000000,
+      "category": "SUV",
+      "featured": true
+    },
+    {
+      "slug": "br-v",
+      "name": "BR-V",
+      "priceFrom": 629000000,
+      "category": "SUV",
+      "featured": false
+    },
+    {
+      "slug": "brio",
+      "name": "Brio",
+      "priceFrom": 419000000,
+      "category": "Hatchback",
+      "featured": false
+    },
+    {
+      "slug": "cr-v",
+      "name": "tên xe test",
+      "priceFrom": 998000000,
+      "category": "SUV",
+      "featured": true
+    }
   ]
 }

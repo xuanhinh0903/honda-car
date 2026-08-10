@@ -1,16 +1,24 @@
 import Link from "next/link";
 import { Phone, MapPin, Mail } from "lucide-react";
-import { getDealership, getCars, getNews } from "@/lib/data";
 import { formatPhone } from "@/lib/format";
 import { QuoteForm } from "@/components/forms/quote-form";
 import { Separator } from "@/components/ui/separator";
 import { Logo } from "./logo";
+import type {
+  CarIndexItem,
+  DealershipInfo,
+  NewsIndexItem,
+} from "@/lib/types";
 
-const dealership = getDealership();
-const cars = getCars();
-const news = getNews().slice(0, 5);
-
-export function Footer() {
+export function Footer({
+  dealership,
+  cars,
+  news,
+}: {
+  dealership: DealershipInfo;
+  cars: CarIndexItem[];
+  news: NewsIndexItem[];
+}) {
   return (
     <footer className="bg-charcoal text-white">
       <div className="container mx-auto px-4 py-16">
@@ -98,7 +106,7 @@ export function Footer() {
             <p className="text-silver text-sm mb-4">
               Điền thông tin để nhận báo giá xe Honda!
             </p>
-            <QuoteForm compact />
+            <QuoteForm compact cars={cars} />
           </div>
         </div>
 

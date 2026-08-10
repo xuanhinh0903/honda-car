@@ -4,12 +4,14 @@ import {
   getDealership,
   getDelivery,
   getNavigation,
+  getPageContent,
   getPricing,
   getProcess,
   getPromotions,
   saveDealership,
   saveDelivery,
   saveNavigation,
+  savePageContent,
   savePricing,
   saveProcess,
   savePromotions,
@@ -20,6 +22,7 @@ import type {
   DealershipInfo,
   DeliveryImage,
   NavItem,
+  PageContent,
   PricingCar,
   ProcessStep,
   Promotion,
@@ -49,6 +52,8 @@ export async function GET(request: Request) {
       return NextResponse.json(getProcess());
     case "promotions":
       return NextResponse.json(getPromotions());
+    case "pages":
+      return NextResponse.json(getPageContent());
     default:
       return NextResponse.json({ error: "Invalid key" }, { status: 400 });
   }
@@ -99,6 +104,9 @@ export async function PUT(request: Request) {
       break;
     case "promotions":
       savePromotions(body.data as Promotion[]);
+      break;
+    case "pages":
+      savePageContent(body.data as PageContent);
       break;
     default:
       return NextResponse.json({ error: "Invalid key" }, { status: 400 });

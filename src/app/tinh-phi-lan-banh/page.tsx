@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getCars, getDealership, getPageContent } from "@/lib/data-server";
 import { SectionTitle } from "@/components/motion/section-reveal";
 import { RollingCostCalculator } from "@/components/forms/rolling-cost-calculator";
 
@@ -8,17 +9,18 @@ export const metadata: Metadata = {
 };
 
 export default function TinhPhiLanBanhPage() {
+  const rollingCost = getPageContent().rollingCost;
+  const cars = getCars();
+  const dealership = getDealership();
+
   return (
     <div className="pt-24 pb-16">
       <div className="container mx-auto px-4">
-        <SectionTitle
-          subtitle="Công cụ"
-          title="Tính phí lăn bánh"
-        />
+        <SectionTitle subtitle={rollingCost.subtitle} title={rollingCost.title} />
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Ước tính tổng chi phí lăn bánh bao gồm thuế, bảo hiểm và các khoản phí khác
+          {rollingCost.description}
         </p>
-        <RollingCostCalculator />
+        <RollingCostCalculator cars={cars} dealership={dealership} />
       </div>
     </div>
   );

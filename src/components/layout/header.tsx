@@ -12,16 +12,21 @@ import {
   SheetTrigger,
   SheetClose,
 } from "@/components/ui/sheet";
-import { getDealership, getNavigation } from "@/lib/data";
 import { formatPhone } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { QuoteDialog } from "./quote-dialog";
 import { Logo } from "./logo";
+import type { CarIndexItem, DealershipInfo, NavItem } from "@/lib/types";
 
-const dealership = getDealership();
-const navigation = getNavigation();
-
-export function Header() {
+export function Header({
+  dealership,
+  navigation,
+  cars,
+}: {
+  dealership: DealershipInfo;
+  navigation: NavItem[];
+  cars: CarIndexItem[];
+}) {
   const [scrolled, setScrolled] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const pathname = usePathname();
@@ -111,6 +116,7 @@ export function Header() {
               </span>
             </a>
             <QuoteDialog
+              cars={cars}
               trigger={
                 <Button size="sm" className="hidden sm:inline-flex bg-honda-red hover:bg-honda-red-hover text-white border-0">
                   Báo giá
