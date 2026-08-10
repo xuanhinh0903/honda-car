@@ -101,7 +101,7 @@ const SECTION_TITLES: Record<AdminSection, { title: string; desc: string }> = {
   },
   leads: {
     title: "Đăng ký khách",
-    desc: "Đăng ký lái thử, yêu cầu báo giá và liên hệ từ website. Kèm trạng thái gửi thông báo Zalo.",
+    desc: "Đăng ký lái thử, yêu cầu báo giá và liên hệ từ website.",
   },
   navigation: {
     title: "Menu điều hướng",

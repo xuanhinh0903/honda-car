@@ -1,14 +1,6 @@
 import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin-api";
-import {
-  addLead,
-  deleteLead,
-  getLeads,
-  updateLeadNotification,
-  updateLeadTelegram,
-} from "@/lib/leads";
-import { notifyLead } from "@/lib/zalo-notify";
-import { sendTelegramNotification } from "@/lib/telegram-notify";
+import { addLead, deleteLead, getLeads } from "@/lib/leads";
 import type { Lead } from "@/lib/leads-shared";
 
 export async function GET() {
@@ -34,7 +26,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const lead = addLead({
+  addLead({
     type,
     name,
     phone,
@@ -45,13 +37,7 @@ export async function POST(request: Request) {
     message: body.message?.trim() || undefined,
   });
 
-  const status = await notifyLead(lead);
-  updateLeadNotification(lead.id, status);
-
-  const telegramStatus = await sendTelegramNotification(lead);
-  updateLeadTelegram(lead.id, telegramStatus);
-
-  return NextResponse.json({ ok: true, notification: status });
+  return NextResponse.json({ ok: true });
 }
 
 export async function DELETE(request: Request) {

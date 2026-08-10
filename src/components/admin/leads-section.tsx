@@ -9,18 +9,6 @@ import { adminToast } from "./admin-toast";
 import { AdminLoading } from "./admin-ui";
 import { LEAD_TYPE_LABELS, type Lead } from "@/lib/leads-shared";
 
-const NOTIFY_LABELS: Record<NonNullable<Lead["notification"]>, string> = {
-  sent: "Zalo: đã gửi",
-  failed: "Zalo: lỗi",
-  skipped: "Zalo: chưa gửi",
-};
-
-const TELEGRAM_LABELS: Record<NonNullable<Lead["telegram"]>, string> = {
-  sent: "Telegram: đã gửi",
-  failed: "Telegram: lỗi",
-  skipped: "Telegram: chưa gửi",
-};
-
 function formatDate(iso: string) {
   return new Date(iso).toLocaleString("vi-VN");
 }
@@ -57,9 +45,7 @@ export function LeadsSection() {
   return (
     <div className="space-y-4">
       <div className="rounded-xl border border-border/60 bg-muted/20 px-4 py-3 text-sm text-muted-foreground">
-        Mỗi khách gửi form (lái thử / báo giá / liên hệ) sẽ xuất hiện tại đây. Nếu
-        đã cấu hình Zalo OA hoặc Telegram trong biến môi trường, hệ thống sẽ tự
-        gửi thông báo.
+        Mỗi khách gửi form (lái thử / báo giá / liên hệ) sẽ xuất hiện tại đây.
       </div>
 
       {leads.length === 0 ? (
@@ -97,34 +83,6 @@ export function LeadsSection() {
                   </div>
                   <div className="mt-2 flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
                     <span>{formatDate(lead.createdAt)}</span>
-                    {lead.notification ? (
-                      <Badge
-                        variant={
-                          lead.notification === "sent" ? "default" : "secondary"
-                        }
-                        className={
-                          lead.notification === "sent" ? "bg-green-600" : undefined
-                        }
-                      >
-                        {NOTIFY_LABELS[lead.notification]}
-                      </Badge>
-                    ) : null}
-                    {lead.telegram ? (
-                      <Badge
-                        variant={
-                          lead.telegram === "sent" ? "default" : "secondary"
-                        }
-                        className={
-                          lead.telegram === "sent"
-                            ? "bg-sky-600"
-                            : lead.telegram === "failed"
-                              ? "bg-red-600"
-                              : undefined
-                        }
-                      >
-                        {TELEGRAM_LABELS[lead.telegram]}
-                      </Badge>
-                    ) : null}
                   </div>
                 </div>
                 <Button

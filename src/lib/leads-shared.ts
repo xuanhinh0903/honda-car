@@ -9,8 +9,6 @@ export interface Lead {
   subject?: string;
   message?: string;
   createdAt: string;
-  notification: "sent" | "failed" | "skipped" | null;
-  telegram: "sent" | "failed" | "skipped" | null;
 }
 
 export const LEAD_TYPE_LABELS: Record<Lead["type"], string> = {

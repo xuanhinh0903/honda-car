@@ -35,7 +35,7 @@ export function QuoteForm({ compact = false, cars }: QuoteFormProps) {
     setSubmitting(true);
     setError("");
     try {
-      const res = await fetch("/api/telegram/contact", {
+      const res = await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
