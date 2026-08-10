@@ -21,9 +21,9 @@ const categoryLabels: Record<string, string> = {
   "phan-tich": "Phân tích",
 };
 
-export default function TinTucPage() {
-  const newsHeading = getPageContent().news;
-  const articles = getNews();
+export default async function TinTucPage() {
+  const newsHeading = (await getPageContent()).news;
+  const articles = await getNews();
 
   return (
     <div className="pt-24 pb-16">

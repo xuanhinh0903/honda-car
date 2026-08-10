@@ -24,7 +24,7 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const dealership = getDealership();
+  const dealership = await getDealership();
 
   return {
     metadataBase: new URL("https://hondatiendat.vn"),
@@ -64,10 +64,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const dealership = getDealership();
-  const navigation = getNavigation();
-  const cars = getCars();
-  const news = getNews().slice(0, 5);
+  const dealership = await getDealership();
+  const navigation = await getNavigation();
+  const cars = await getCars();
+  const news = (await getNews()).slice(0, 5);
 
   return (
     <html

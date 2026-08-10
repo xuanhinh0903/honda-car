@@ -18,19 +18,21 @@ export async function GET(request: Request) {
   const slug = searchParams.get("slug");
 
   if (slug) {
-    const car = getCarBySlug(slug);
+    const car = await getCarBySlug(slug);
     if (!car) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
     return NextResponse.json(car);
   }
 
+  const cars = await getCars();
+  const details = await Promise.all(
+    cars.map(async (item) => getCarBySlug(item.slug))
+  );
+
   return NextResponse.json({
-    index: getCars(),
-    items: getCars().map((item) => ({
-      ...item,
-      detail: getCarBySlug(item.slug),
-    })),
+    index: cars,
+    items: cars.map((item, i) => ({ ...item, detail: details[i] })),
   });
 }
 
@@ -47,13 +49,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing car data" }, { status: 400 });
   }
 
-  const cars = getCars();
+  const cars = await getCars();
   if (cars.some((item) => item.slug === body.car!.slug)) {
     return NextResponse.json({ error: "Slug đã tồn tại" }, { status: 409 });
   }
 
-  saveCar(body.car.slug, body.car);
-  saveCarsIndex([...cars, body.indexItem]);
+  await saveCar(body.car.slug, body.car);
+  await saveCarsIndex([...cars, body.indexItem]);
   revalidateCar(body.car.slug);
 
   return NextResponse.json({ ok: true });
@@ -74,14 +76,14 @@ export async function PUT(request: Request) {
   }
 
   const oldSlug = body.oldSlug ?? body.car.slug;
-  const cars = getCars().filter((item) => item.slug !== oldSlug);
+  const cars = (await getCars()).filter((item) => item.slug !== oldSlug);
 
   if (oldSlug !== body.car.slug) {
-    deleteCar(oldSlug);
+    await deleteCar(oldSlug);
   }
 
-  saveCar(body.car.slug, body.car);
-  saveCarsIndex([...cars, body.indexItem]);
+  await saveCar(body.car.slug, body.car);
+  await saveCarsIndex([...cars, body.indexItem]);
   revalidateCar(body.car.slug);
 
   return NextResponse.json({ ok: true });
@@ -97,7 +99,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Missing slug" }, { status: 400 });
   }
 
-  deleteCar(slug);
+  await deleteCar(slug);
   revalidateSite();
 
   return NextResponse.json({ ok: true });

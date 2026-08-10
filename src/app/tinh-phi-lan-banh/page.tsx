@@ -8,10 +8,10 @@ export const metadata: Metadata = {
   description: "Công cụ tính phí lăn bánh xe Honda tại Hà Nội",
 };
 
-export default function TinhPhiLanBanhPage() {
-  const rollingCost = getPageContent().rollingCost;
-  const cars = getCars();
-  const dealership = getDealership();
+export default async function TinhPhiLanBanhPage() {
+  const rollingCost = (await getPageContent()).rollingCost;
+  const cars = await getCars();
+  const dealership = await getDealership();
 
   return (
     <div className="pt-24 pb-16">

@@ -6,7 +6,7 @@ import type { Lead } from "@/lib/leads-shared";
 export async function GET() {
   const session = await requireAdmin();
   if (session instanceof NextResponse) return session;
-  return NextResponse.json({ leads: getLeads() });
+  return NextResponse.json({ leads: await getLeads() });
 }
 
 export async function POST(request: Request) {
@@ -26,7 +26,7 @@ export async function POST(request: Request) {
     );
   }
 
-  addLead({
+  await addLead({
     type,
     name,
     phone,
@@ -50,6 +50,6 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Missing id" }, { status: 400 });
   }
 
-  deleteLead(id);
+  await deleteLead(id);
   return NextResponse.json({ ok: true });
 }

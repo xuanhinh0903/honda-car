@@ -25,7 +25,7 @@ export async function POST(request: Request) {
     );
   }
 
-  if (!verifyCredentials(username, password)) {
+  if (!(await verifyCredentials(username, password))) {
     return NextResponse.json(
       { error: "Tài khoản hoặc mật khẩu không đúng" },
       { status: 401 }

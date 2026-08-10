@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 
 const featureIcons = [Building2, Layers, Users, Award];
 
-export default function GioiThieuPage() {
-  const dealership = getDealership();
-  const about = getPageContent().about;
+export default async function GioiThieuPage() {
+  const dealership = await getDealership();
+  const about = (await getPageContent()).about;
 
   return (
     <div className="pt-24 pb-16">

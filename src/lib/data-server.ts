@@ -20,81 +20,83 @@ import {
   writeDataJson,
 } from "./fs-data";
 
-export function getDealership(): DealershipInfo {
+export async function getDealership(): Promise<DealershipInfo> {
   return readDataJson<DealershipInfo>("dealership.json");
 }
 
-export function getNavigation(): NavItem[] {
-  return readDataJson<{ items: NavItem[] }>("navigation.json").items;
+export async function getNavigation(): Promise<NavItem[]> {
+  return (await readDataJson<{ items: NavItem[] }>("navigation.json")).items;
 }
 
-export function getCars(): CarIndexItem[] {
-  return readDataJson<{ cars: CarIndexItem[] }>("cars", "index.json").cars;
+export async function getCars(): Promise<CarIndexItem[]> {
+  return (await readDataJson<{ cars: CarIndexItem[] }>("cars", "index.json"))
+    .cars;
 }
 
-export function getFeaturedCars(): CarIndexItem[] {
-  return getCars().filter((car) => car.featured);
+export async function getFeaturedCars(): Promise<CarIndexItem[]> {
+  return (await getCars()).filter((car) => car.featured);
 }
 
-export function getCarBySlug(slug: string): Car | null {
+export async function getCarBySlug(slug: string): Promise<Car | null> {
   try {
-    return readDataJson<Car>("cars", `${slug}.json`);
+    return await readDataJson<Car>("cars", `${slug}.json`);
   } catch {
     return null;
   }
 }
 
-export function getCarThumbnail(slug: string): string {
+export async function getCarThumbnail(slug: string): Promise<string> {
   return (
-    getCarBySlug(slug)?.thumbnail ??
+    (await getCarBySlug(slug))?.thumbnail ??
     `/images/cars/${slug.replace(/-/g, "")}-thumb.jpg`
   );
 }
 
-export function getAllCarSlugs(): string[] {
+export async function getAllCarSlugs(): Promise<string[]> {
   return listDataJsonFiles("cars");
 }
 
-export function getNews(): NewsIndexItem[] {
-  return readDataJson<{ articles: NewsIndexItem[] }>("news", "index.json")
+export async function getNews(): Promise<NewsIndexItem[]> {
+  return (await readDataJson<{ articles: NewsIndexItem[] }>("news", "index.json"))
     .articles;
 }
 
-export function getFeaturedNews(limit = 4): NewsIndexItem[] {
-  return getNews()
+export async function getFeaturedNews(limit = 4): Promise<NewsIndexItem[]> {
+  return (await getNews())
     .filter((article) => article.featured)
     .slice(0, limit);
 }
 
-export function getNewsBySlug(slug: string): NewsArticle | null {
+export async function getNewsBySlug(slug: string): Promise<NewsArticle | null> {
   try {
-    return readDataJson<NewsArticle>("news", `${slug}.json`);
+    return await readDataJson<NewsArticle>("news", `${slug}.json`);
   } catch {
     return null;
   }
 }
 
-export function getAllNewsSlugs(): string[] {
+export async function getAllNewsSlugs(): Promise<string[]> {
   return listDataJsonFiles("news");
 }
 
-export function getProcessSteps(): ProcessStep[] {
-  return readDataJson<{ steps: ProcessStep[] }>("process.json").steps;
+export async function getProcessSteps(): Promise<ProcessStep[]> {
+  return (await readDataJson<{ steps: ProcessStep[] }>("process.json")).steps;
 }
 
-export function getPricing(): {
+export async function getPricing(): Promise<{
   title: string;
   updatedAt: string;
   cars: PricingCar[];
-} {
+}> {
   return readDataJson("pricing.json");
 }
 
-export function getDeliveryImages(): DeliveryImage[] {
-  return readDataJson<{ images: DeliveryImage[] }>("delivery.json").images;
+export async function getDeliveryImages(): Promise<DeliveryImage[]> {
+  return (await readDataJson<{ images: DeliveryImage[] }>("delivery.json"))
+    .images;
 }
 
-export function getDelivery() {
+export async function getDelivery() {
   return readDataJson<{
     title: string;
     description: string;
@@ -102,78 +104,83 @@ export function getDelivery() {
   }>("delivery.json");
 }
 
-export function getProcess() {
+export async function getProcess() {
   return readDataJson<{ title: string; steps: ProcessStep[] }>("process.json");
 }
 
-export function getPromotions(): Promotion[] {
-  return readDataJson<{ items: Promotion[] }>("promotions.json").items;
+export async function getPromotions(): Promise<Promotion[]> {
+  return (await readDataJson<{ items: Promotion[] }>("promotions.json")).items;
 }
 
-export function saveDealership(data: DealershipInfo) {
-  writeDataJson(data, "dealership.json");
+export async function saveDealership(data: DealershipInfo) {
+  await writeDataJson(data, "dealership.json");
 }
 
-export function saveCarsIndex(cars: CarIndexItem[]) {
-  writeDataJson({ cars }, "cars", "index.json");
+export async function saveCarsIndex(cars: CarIndexItem[]) {
+  await writeDataJson({ cars }, "cars", "index.json");
 }
 
-export function saveCar(slug: string, car: Car) {
-  writeDataJson(car, "cars", `${slug}.json`);
+export async function saveCar(slug: string, car: Car) {
+  await writeDataJson(car, "cars", `${slug}.json`);
 }
 
-export function deleteCar(slug: string) {
-  deleteDataFile("cars", `${slug}.json`);
-  saveCarsIndex(getCars().filter((car) => car.slug !== slug));
+export async function deleteCar(slug: string) {
+  await deleteDataFile("cars", `${slug}.json`);
+  await saveCarsIndex((await getCars()).filter((car) => car.slug !== slug));
 }
 
-export function saveNewsIndex(articles: NewsIndexItem[]) {
-  writeDataJson({ articles }, "news", "index.json");
+export async function saveNewsIndex(articles: NewsIndexItem[]) {
+  await writeDataJson({ articles }, "news", "index.json");
 }
 
-export function saveNewsArticle(slug: string, article: NewsArticle) {
-  writeDataJson(article, "news", `${slug}.json`);
+export async function saveNewsArticle(slug: string, article: NewsArticle) {
+  await writeDataJson(article, "news", `${slug}.json`);
 }
 
-export function deleteNewsArticle(slug: string) {
-  deleteDataFile("news", `${slug}.json`);
-  saveNewsIndex(getNews().filter((article) => article.slug !== slug));
+export async function deleteNewsArticle(slug: string) {
+  await deleteDataFile("news", `${slug}.json`);
+  await saveNewsIndex(
+    (await getNews()).filter((article) => article.slug !== slug)
+  );
 }
 
-export function savePricing(data: {
+export async function savePricing(data: {
   title: string;
   updatedAt: string;
   cars: PricingCar[];
 }) {
-  writeDataJson(data, "pricing.json");
+  await writeDataJson(data, "pricing.json");
 }
 
-export function saveDelivery(data: {
+export async function saveDelivery(data: {
   title: string;
   description: string;
   images: DeliveryImage[];
 }) {
-  writeDataJson(data, "delivery.json");
+  await writeDataJson(data, "delivery.json");
 }
 
-export function saveProcess(data: { title: string; steps: ProcessStep[] }) {
-  writeDataJson(data, "process.json");
+export async function saveProcess(data: {
+  title: string;
+  steps: ProcessStep[];
+}) {
+  await writeDataJson(data, "process.json");
 }
 
-export function savePromotions(items: Promotion[]) {
-  writeDataJson({ items }, "promotions.json");
+export async function savePromotions(items: Promotion[]) {
+  await writeDataJson({ items }, "promotions.json");
 }
 
-export function saveNavigation(items: NavItem[]) {
-  writeDataJson({ items }, "navigation.json");
+export async function saveNavigation(items: NavItem[]) {
+  await writeDataJson({ items }, "navigation.json");
 }
 
-export function getPageContent(): PageContent {
+export async function getPageContent(): Promise<PageContent> {
   return readDataJson<PageContent>("pages.json");
 }
 
-export function savePageContent(content: PageContent) {
-  writeDataJson(content, "pages.json");
+export async function savePageContent(content: PageContent) {
+  await writeDataJson(content, "pages.json");
 }
 
 export const ADMIN_DATA_KEYS = [

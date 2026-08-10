@@ -1,7 +1,7 @@
 import { getDealership } from "@/lib/data-server";
 
-export function LocalBusinessJsonLd() {
-  const dealership = getDealership();
+export async function LocalBusinessJsonLd() {
+  const dealership = await getDealership();
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "AutoDealer",

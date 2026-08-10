@@ -18,11 +18,28 @@ function assertInside(base: string, target: string) {
   return resolved;
 }
 
-export function saveUpload(
+export async function saveUpload(
   buffer: Buffer,
   segments: string[],
   fileName: string
-): string {
+): Promise<string> {
+  if (process.env.BLOB_READ_WRITE_TOKEN) {
+    try {
+      const { put } = await import("@vercel/blob");
+      const blob = await put(
+        `uploads/${path.posix.join(...segments, fileName)}`,
+        buffer,
+        { access: "public" }
+      );
+      return blob.url;
+    } catch (err) {
+      console.error(
+        "[upload] Vercel Blob thất bại, fallback về storage tạm:",
+        err instanceof Error ? err.message : "unknown"
+      );
+    }
+  }
+
   const filePath = assertInside(
     UPLOAD_DIR,
     path.join(UPLOAD_DIR, ...segments, fileName)

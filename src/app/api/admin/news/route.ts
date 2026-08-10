@@ -30,16 +30,21 @@ export async function GET(request: Request) {
   const slug = searchParams.get("slug");
 
   if (slug) {
-    const article = getNewsBySlug(slug);
+    const article = await getNewsBySlug(slug);
     if (!article) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
     return NextResponse.json(article);
   }
 
+  const news = await getNews();
+  const items = await Promise.all(
+    news.map(async (item) => getNewsBySlug(item.slug))
+  );
+
   return NextResponse.json({
-    index: getNews(),
-    items: getNews().map((item) => getNewsBySlug(item.slug)).filter(Boolean),
+    index: news,
+    items: items.filter(Boolean),
   });
 }
 
@@ -52,13 +57,13 @@ export async function POST(request: Request) {
     return NextResponse.json({ error: "Missing article data" }, { status: 400 });
   }
 
-  const articles = getNews();
+  const articles = await getNews();
   if (articles.some((item) => item.slug === article.slug)) {
     return NextResponse.json({ error: "Slug đã tồn tại" }, { status: 409 });
   }
 
-  saveNewsArticle(article.slug, article);
-  saveNewsIndex([...articles, toIndexItem(article)]);
+  await saveNewsArticle(article.slug, article);
+  await saveNewsIndex([...articles, toIndexItem(article)]);
   revalidateNews(article.slug);
 
   return NextResponse.json({ ok: true });
@@ -78,14 +83,14 @@ export async function PUT(request: Request) {
   }
 
   const oldSlug = body.oldSlug ?? body.article.slug;
-  const articles = getNews().filter((item) => item.slug !== oldSlug);
+  const articles = (await getNews()).filter((item) => item.slug !== oldSlug);
 
   if (oldSlug !== body.article.slug) {
-    deleteNewsArticle(oldSlug);
+    await deleteNewsArticle(oldSlug);
   }
 
-  saveNewsArticle(body.article.slug, body.article);
-  saveNewsIndex([...articles, toIndexItem(body.article)]);
+  await saveNewsArticle(body.article.slug, body.article);
+  await saveNewsIndex([...articles, toIndexItem(body.article)]);
   revalidateNews(body.article.slug);
 
   return NextResponse.json({ ok: true });
@@ -101,7 +106,7 @@ export async function DELETE(request: Request) {
     return NextResponse.json({ error: "Missing slug" }, { status: 400 });
   }
 
-  deleteNewsArticle(slug);
+  await deleteNewsArticle(slug);
   revalidateSite();
 
   return NextResponse.json({ ok: true });

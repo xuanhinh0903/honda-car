@@ -41,19 +41,19 @@ export async function GET(request: Request) {
 
   switch (key) {
     case "dealership":
-      return NextResponse.json(getDealership());
+      return NextResponse.json(await getDealership());
     case "navigation":
-      return NextResponse.json(getNavigation());
+      return NextResponse.json(await getNavigation());
     case "pricing":
-      return NextResponse.json(getPricing());
+      return NextResponse.json(await getPricing());
     case "delivery":
-      return NextResponse.json(getDelivery());
+      return NextResponse.json(await getDelivery());
     case "process":
-      return NextResponse.json(getProcess());
+      return NextResponse.json(await getProcess());
     case "promotions":
-      return NextResponse.json(getPromotions());
+      return NextResponse.json(await getPromotions());
     case "pages":
-      return NextResponse.json(getPageContent());
+      return NextResponse.json(await getPageContent());
     default:
       return NextResponse.json({ error: "Invalid key" }, { status: 400 });
   }
@@ -74,13 +74,13 @@ export async function PUT(request: Request) {
 
   switch (body.key) {
     case "dealership":
-      saveDealership(body.data as DealershipInfo);
+      await saveDealership(body.data as DealershipInfo);
       break;
     case "navigation":
-      saveNavigation(body.data as NavItem[]);
+      await saveNavigation(body.data as NavItem[]);
       break;
     case "pricing":
-      savePricing(
+      await savePricing(
         body.data as {
           title: string;
           updatedAt: string;
@@ -89,7 +89,7 @@ export async function PUT(request: Request) {
       );
       break;
     case "delivery":
-      saveDelivery(
+      await saveDelivery(
         body.data as {
           title: string;
           description: string;
@@ -98,15 +98,15 @@ export async function PUT(request: Request) {
       );
       break;
     case "process":
-      saveProcess(
+      await saveProcess(
         body.data as { title: string; steps: ProcessStep[] }
       );
       break;
     case "promotions":
-      savePromotions(body.data as Promotion[]);
+      await savePromotions(body.data as Promotion[]);
       break;
     case "pages":
-      savePageContent(body.data as PageContent);
+      await savePageContent(body.data as PageContent);
       break;
     default:
       return NextResponse.json({ error: "Invalid key" }, { status: 400 });

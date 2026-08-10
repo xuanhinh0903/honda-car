@@ -11,9 +11,9 @@ export const metadata: Metadata = {
   description: "Liên hệ Honda Tiến Đạt - Hotline, địa chỉ và form liên hệ",
 };
 
-export default function LienHePage() {
-  const dealership = getDealership();
-  const contact = getPageContent().contact;
+export default async function LienHePage() {
+  const dealership = await getDealership();
+  const contact = (await getPageContent()).contact;
 
   const contactInfo = [
     {

@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   const safeName = path.basename(file.name).replace(/[^a-zA-Z0-9._-]/g, "-");
   const buffer = Buffer.from(await file.arrayBuffer());
   const segments = folder.split("/").filter(Boolean);
-  const uploadPath = saveUpload(buffer, segments, safeName);
+  const uploadPath = await saveUpload(buffer, segments, safeName);
 
   return NextResponse.json({ ok: true, path: uploadPath });
 }

@@ -10,8 +10,8 @@ export const metadata: Metadata = {
   description: "Bảng giá xe Honda mới nhất tại Honda Tiến Đạt Hà Nội",
 };
 
-export default function BangGiaPage() {
-  const pricing = getPricing();
+export default async function BangGiaPage() {
+  const pricing = await getPricing();
 
   return (
     <div className="pt-24 pb-16">

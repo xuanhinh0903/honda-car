@@ -9,12 +9,14 @@ export const metadata: Metadata = {
   description: "Danh sách các dòng xe Honda tại Honda Tiến Đạt Hà Nội",
 };
 
-export default function SanPhamPage() {
-  const products = getPageContent().products;
-  const cars = getCars();
+export default async function SanPhamPage() {
+  const products = (await getPageContent()).products;
+  const cars = await getCars();
 
   const thumbnails = Object.fromEntries(
-    cars.map((car) => [car.slug, getCarThumbnail(car.slug)])
+    await Promise.all(
+      cars.map(async (car) => [car.slug, await getCarThumbnail(car.slug)])
+    )
   );
 
   return (

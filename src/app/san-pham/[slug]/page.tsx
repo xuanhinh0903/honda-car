@@ -22,12 +22,12 @@ interface PageProps {
 }
 
 export async function generateStaticParams() {
-  return getAllCarSlugs().map((slug) => ({ slug }));
+  return (await getAllCarSlugs()).map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const car = getCarBySlug(slug);
+  const car = await getCarBySlug(slug);
   if (!car) return { title: "Không tìm thấy" };
 
   return {
@@ -43,16 +43,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function CarDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const dealership = getDealership();
-  const car = getCarBySlug(slug);
+  const dealership = await getDealership();
+  const car = await getCarBySlug(slug);
   if (!car) notFound();
 
-  const relatedCars = getCars()
+  const relatedCars = (await getCars())
     .filter((c) => c.slug !== slug && c.category === car.category)
     .slice(0, 3);
 
   const relatedThumbnails = Object.fromEntries(
-    relatedCars.map((c) => [c.slug, getCarThumbnail(c.slug)])
+    await Promise.all(
+      relatedCars.map(async (c) => [c.slug, await getCarThumbnail(c.slug)])
+    )
   );
 
   return (

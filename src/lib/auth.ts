@@ -16,8 +16,11 @@ interface SessionRecord {
   exp: number;
 }
 
-export function verifyCredentials(username: string, password: string): boolean {
-  const { users } = readDataJson<UsersFile>("users.json");
+export async function verifyCredentials(
+  username: string,
+  password: string
+): Promise<boolean> {
+  const { users } = await readDataJson<UsersFile>("users.json");
   return users.some(
     (user) => user.username === username && user.password === password
   );

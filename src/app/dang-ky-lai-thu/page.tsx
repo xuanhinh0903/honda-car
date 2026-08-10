@@ -8,9 +8,9 @@ export const metadata: Metadata = {
   description: "Đăng ký lái thử xe Honda miễn phí tại Honda Tiến Đạt Hà Nội",
 };
 
-export default function DangKyLaiThuPage() {
-  const testDrive = getPageContent().testDrive;
-  const cars = getCars();
+export default async function DangKyLaiThuPage() {
+  const testDrive = (await getPageContent()).testDrive;
+  const cars = await getCars();
 
   return (
     <div className="pt-24 pb-16">

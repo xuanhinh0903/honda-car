@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: "Hình ảnh lễ bàn giao xe tại Honda Tiến Đạt",
 };
 
-export default function BanGiaoXePage() {
-  const deliveryHeading = getPageContent().delivery;
-  const images = getDeliveryImages();
+export default async function BanGiaoXePage() {
+  const deliveryHeading = (await getPageContent()).delivery;
+  const images = await getDeliveryImages();
 
   return (
     <div className="pt-24 pb-16">

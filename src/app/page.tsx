@@ -14,15 +14,17 @@ import {
   getProcessSteps,
 } from "@/lib/data-server";
 
-export default function Home() {
-  const dealership = getDealership();
-  const pageContent = getPageContent();
-  const featuredCars = getFeaturedCars();
-  const featuredNews = getFeaturedNews(4);
-  const processSteps = getProcessSteps();
+export default async function Home() {
+  const dealership = await getDealership();
+  const pageContent = await getPageContent();
+  const featuredCars = await getFeaturedCars();
+  const featuredNews = await getFeaturedNews(4);
+  const processSteps = await getProcessSteps();
 
   const thumbnails = Object.fromEntries(
-    featuredCars.map((car) => [car.slug, getCarThumbnail(car.slug)])
+    await Promise.all(
+      featuredCars.map(async (car) => [car.slug, await getCarThumbnail(car.slug)])
+    )
   );
 
   return (
