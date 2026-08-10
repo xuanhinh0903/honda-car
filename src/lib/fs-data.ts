@@ -1,7 +1,12 @@
 import fs from "fs";
+import os from "os";
 import path from "path";
 
 const DATA_DIR = path.join(process.cwd(), "data");
+const IS_SERVERLESS = process.env.VERCEL === "1";
+const WRITABLE_DIR = IS_SERVERLESS
+  ? path.join(os.tmpdir(), "honda-car-data")
+  : DATA_DIR;
 const PUBLIC_DIR = path.join(process.cwd(), "public");
 
 function assertInside(base: string, target: string) {
@@ -12,8 +17,16 @@ function assertInside(base: string, target: string) {
   return resolved;
 }
 
-export function getDataFilePath(...segments: string[]) {
+function getWritablePath(...segments: string[]) {
+  return assertInside(WRITABLE_DIR, path.join(WRITABLE_DIR, ...segments));
+}
+
+function getBundledPath(...segments: string[]) {
   return assertInside(DATA_DIR, path.join(DATA_DIR, ...segments));
+}
+
+export function getDataFilePath(...segments: string[]) {
+  return getWritablePath(...segments);
 }
 
 export function getPublicFilePath(...segments: string[]) {
@@ -21,13 +34,16 @@ export function getPublicFilePath(...segments: string[]) {
 }
 
 export function readDataJson<T>(...segments: string[]): T {
-  const filePath = getDataFilePath(...segments);
+  const writablePath = getWritablePath(...segments);
+  const filePath = fs.existsSync(writablePath)
+    ? writablePath
+    : getBundledPath(...segments);
   const content = fs.readFileSync(filePath, "utf-8");
   return JSON.parse(content) as T;
 }
 
 export function writeDataJson(data: unknown, ...segments: string[]) {
-  const filePath = getDataFilePath(...segments);
+  const filePath = getWritablePath(...segments);
   fs.mkdirSync(path.dirname(filePath), { recursive: true });
   fs.writeFileSync(
     filePath,
@@ -37,19 +53,26 @@ export function writeDataJson(data: unknown, ...segments: string[]) {
 }
 
 export function deleteDataFile(...segments: string[]) {
-  const filePath = getDataFilePath(...segments);
+  const filePath = getWritablePath(...segments);
   if (fs.existsSync(filePath)) {
     fs.unlinkSync(filePath);
   }
 }
 
 export function listDataJsonFiles(...dirSegments: string[]): string[] {
-  const dirPath = getDataFilePath(...dirSegments);
-  if (!fs.existsSync(dirPath)) return [];
-  return fs
-    .readdirSync(dirPath)
-    .filter((file) => file.endsWith(".json") && file !== "index.json")
-    .map((file) => file.replace(/\.json$/, ""));
+  const names = new Set<string>();
+  for (const dirPath of [
+    getWritablePath(...dirSegments),
+    getBundledPath(...dirSegments),
+  ]) {
+    if (!fs.existsSync(dirPath)) continue;
+    for (const file of fs.readdirSync(dirPath)) {
+      if (file.endsWith(".json") && file !== "index.json") {
+        names.add(file.replace(/\.json$/, ""));
+      }
+    }
+  }
+  return [...names];
 }
 
 export function writePublicFile(

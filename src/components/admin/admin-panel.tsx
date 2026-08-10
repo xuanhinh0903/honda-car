@@ -12,6 +12,7 @@ import {
   ListOrdered,
   LogOut,
   Menu,
+  MessageSquareText,
   Newspaper,
   Shield,
   Tags,
@@ -32,6 +33,7 @@ import { PricingSection } from "./pricing-section";
 import { DeliverySection } from "./delivery-section";
 import { PromotionsSection } from "./promotions-section";
 import { NavigationSection } from "./navigation-section";
+import { LeadsSection } from "./leads-section";
 import { cn } from "@/lib/utils";
 
 type AdminSection =
@@ -43,7 +45,8 @@ type AdminSection =
   | "delivery"
   | "process"
   | "promotions"
-  | "navigation";
+  | "navigation"
+  | "leads";
 
 const NAV_ITEMS: {
   id: AdminSection;
@@ -59,6 +62,7 @@ const NAV_ITEMS: {
   { id: "pricing", label: "Bảng giá", icon: Tags, group: "Trang" },
   { id: "delivery", label: "Bàn giao xe", icon: Truck, group: "Trang" },
   { id: "promotions", label: "Khuyến mại", icon: Gift, group: "Trang" },
+  { id: "leads", label: "Đăng ký khách", icon: MessageSquareText, group: "Khách hàng" },
   { id: "navigation", label: "Menu", icon: Menu, group: "Hệ thống" },
 ];
 
@@ -94,6 +98,10 @@ const SECTION_TITLES: Record<AdminSection, { title: string; desc: string }> = {
   promotions: {
     title: "Khuyến mại",
     desc: "Chương trình khuyến mãi.",
+  },
+  leads: {
+    title: "Đăng ký khách",
+    desc: "Đăng ký lái thử, yêu cầu báo giá và liên hệ từ website. Kèm trạng thái gửi thông báo Zalo.",
   },
   navigation: {
     title: "Menu điều hướng",
@@ -340,6 +348,7 @@ export function AdminPanel() {
               {activeSection === "pricing" && <PricingSection />}
               {activeSection === "delivery" && <DeliverySection />}
               {activeSection === "promotions" && <PromotionsSection />}
+              {activeSection === "leads" && <LeadsSection />}
               {activeSection === "navigation" && <NavigationSection />}
             </div>
           </main>

@@ -20,6 +20,8 @@ interface QuoteFormProps {
 
 export function QuoteForm({ compact = false, cars }: QuoteFormProps) {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     phone: "",
@@ -28,10 +30,31 @@ export function QuoteForm({ compact = false, cars }: QuoteFormProps) {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Quote form submitted:", form);
-    setSubmitted(true);
+    setSubmitting(true);
+    setError("");
+    try {
+      const res = await fetch("/api/telegram/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          type: "quote",
+          name: form.name,
+          phone: form.phone,
+          email: form.email,
+          car: form.car,
+          message: form.message,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error ?? "Không gửi được yêu cầu");
+      setSubmitted(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Có lỗi xảy ra, vui lòng thử lại");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -108,10 +131,12 @@ export function QuoteForm({ compact = false, cars }: QuoteFormProps) {
       </div>
       <Button
         type="submit"
+        disabled={submitting}
         className={`w-full ${compact ? "bg-honda-red hover:bg-honda-red-hover text-white" : ""}`}
       >
-        Gửi yêu cầu
+        {submitting ? "Đang gửi..." : "Gửi yêu cầu"}
       </Button>
+      {error ? <p className="text-sm text-red-600">{error}</p> : null}
     </form>
   );
 }
