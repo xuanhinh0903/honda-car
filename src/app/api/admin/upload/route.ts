@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import path from "path";
 import { requireAdmin } from "@/lib/admin-api";
-import { writePublicFile } from "@/lib/fs-data";
+import { saveUpload } from "@/lib/uploads";
 
 export async function POST(request: Request) {
   const session = await requireAdmin();
@@ -18,7 +18,7 @@ export async function POST(request: Request) {
   const safeName = path.basename(file.name).replace(/[^a-zA-Z0-9._-]/g, "-");
   const buffer = Buffer.from(await file.arrayBuffer());
   const segments = folder.split("/").filter(Boolean);
-  const publicPath = writePublicFile(buffer, ...segments, safeName);
+  const uploadPath = saveUpload(buffer, segments, safeName);
 
-  return NextResponse.json({ ok: true, path: publicPath });
+  return NextResponse.json({ ok: true, path: uploadPath });
 }
