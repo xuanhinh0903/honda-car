@@ -15,6 +15,11 @@ interface CarImageProps {
   sizes?: string;
 }
 
+function shouldSkipOptimization(src: string) {
+  // Ảnh local qua API route — tránh optimizer (LAN / cold cache)
+  return src.startsWith("/api/uploads");
+}
+
 export function CarImage({
   src,
   alt,
@@ -26,6 +31,7 @@ export function CarImage({
   sizes,
 }: CarImageProps) {
   const [error, setError] = useState(false);
+  const unoptimized = shouldSkipOptimization(src);
 
   if (error) {
     return (
@@ -48,6 +54,7 @@ export function CarImage({
         src={src}
         alt={alt}
         fill
+        unoptimized={unoptimized}
         className={cn("object-cover", className)}
         priority={priority}
         sizes={sizes ?? "(max-width: 768px) 100vw, 50vw"}
@@ -62,6 +69,7 @@ export function CarImage({
       alt={alt}
       width={width ?? 800}
       height={height ?? 450}
+      unoptimized={unoptimized}
       className={cn("object-cover", className)}
       priority={priority}
       sizes={sizes}

@@ -46,11 +46,16 @@ export async function GET(_request: Request, context: RouteContext) {
   const ext = path.extname(filePath).toLowerCase();
   const contentType = MIME_TYPES[ext] ?? "application/octet-stream";
 
+  const cacheControl =
+    process.env.NODE_ENV === "development"
+      ? "no-store"
+      : "public, max-age=0, must-revalidate";
+
   return new NextResponse(buffer, {
     headers: {
       "Content-Type": contentType,
       "Content-Length": String(buffer.length),
-      "Cache-Control": "public, max-age=86400",
+      "Cache-Control": cacheControl,
     },
   });
 }

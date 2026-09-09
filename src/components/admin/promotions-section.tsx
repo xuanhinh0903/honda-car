@@ -13,8 +13,8 @@ export function PromotionsSection() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    adminFetch<{ items: Promotion[] }>("/api/admin/data?key=promotions")
-      .then((data) => setItems(data.items))
+    adminFetch<Promotion[]>("/api/admin/data?key=promotions")
+      .then((data) => setItems(Array.isArray(data) ? data : []))
       .catch((err: Error) =>
         adminToast.error("Không tải được dữ liệu", err.message)
       )

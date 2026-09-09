@@ -97,7 +97,8 @@ export function ImageField({
     const toastId = adminToast.loading("Đang upload ảnh...");
     try {
       const path = await uploadImage(file, uploadFolder);
-      onChange(path);
+      const separator = path.includes("?") ? "&" : "?";
+      onChange(`${path}${separator}v=${Date.now()}`);
       adminToast.dismiss(toastId);
       adminToast.success("Upload thành công");
     } catch (err) {

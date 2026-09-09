@@ -27,26 +27,28 @@ export function StringListEditor({
   multiline = false,
   emptyHint = "Chưa có mục nào",
 }: StringListEditorProps) {
+  const list = Array.isArray(items) ? items : [];
+
   function update(index: number, value: string) {
-    onChange(items.map((item, i) => (i === index ? value : item)));
+    onChange(list.map((item, i) => (i === index ? value : item)));
   }
 
   function remove(index: number) {
-    onChange(items.filter((_, i) => i !== index));
+    onChange(list.filter((_, i) => i !== index));
   }
 
   function add() {
-    onChange([...items, ""]);
+    onChange([...list, ""]);
   }
 
   return (
     <div className="space-y-2">
-      {items.length === 0 && (
+      {list.length === 0 && (
         <p className="rounded-lg border border-dashed border-border/70 bg-muted/20 px-3 py-3 text-center text-xs text-muted-foreground">
           {emptyHint}
         </p>
       )}
-      {items.map((item, index) => (
+      {list.map((item, index) => (
         <div key={index} className="flex items-start gap-2">
           <div className="min-w-0 flex-1">
             {imageUploadFolder ? (
@@ -202,16 +204,17 @@ export function CollectionEditor({
   emptyHint = "Chưa có mục nào",
 }: CollectionEditorProps) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const list = Array.isArray(items) ? items : [];
 
   function updateItem(index: number, patch: Record<string, unknown>) {
-    const next = items.map((item, i) =>
+    const next = list.map((item, i) =>
       i === index ? { ...item, ...patch } : item
     );
     onChange(next);
   }
 
   function handleAdd() {
-    const next = [...items, newItem()];
+    const next = [...list, newItem()];
     onChange(next);
     setSelectedIndex(next.length - 1);
   }
@@ -219,13 +222,13 @@ export function CollectionEditor({
   function handleDelete() {
     if (selectedIndex === null) return;
     if (!confirm("Xóa mục này?")) return;
-    const next = items.filter((_, i) => i !== selectedIndex);
+    const next = list.filter((_, i) => i !== selectedIndex);
     onChange(next);
     setSelectedIndex(null);
   }
 
   const selected =
-    selectedIndex !== null ? items[selectedIndex] ?? null : null;
+    selectedIndex !== null ? list[selectedIndex] ?? null : null;
 
   return (
     <div className="grid gap-4 lg:grid-cols-[240px_1fr]">
@@ -240,12 +243,12 @@ export function CollectionEditor({
           {addLabel}
         </Button>
         <div className="max-h-72 space-y-1 overflow-y-auto pr-1">
-          {items.length === 0 && (
+          {list.length === 0 && (
             <p className="px-2 py-3 text-center text-xs text-muted-foreground">
               {emptyHint}
             </p>
           )}
-          {items.map((item, index) => (
+          {list.map((item, index) => (
             <button
               key={index}
               type="button"

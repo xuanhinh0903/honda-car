@@ -13,8 +13,8 @@ export function NavigationSection() {
   const [saving, setSaving] = useState(false);
 
   useEffect(() => {
-    adminFetch<{ items: NavItem[] }>("/api/admin/data?key=navigation")
-      .then((data) => setItems(data.items))
+    adminFetch<NavItem[]>("/api/admin/data?key=navigation")
+      .then((data) => setItems(Array.isArray(data) ? data : []))
       .catch((err: Error) =>
         adminToast.error("Không tải được dữ liệu", err.message)
       )
