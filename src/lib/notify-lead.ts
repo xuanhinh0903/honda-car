@@ -63,11 +63,9 @@ export async function notifyLeadByEmail(lead: Lead): Promise<void> {
   const to = process.env.LEAD_NOTIFY_EMAIL?.trim();
 
   if (!apiKey || !to) {
-    if (process.env.NODE_ENV === "development") {
-      console.warn(
-        "[notify-lead] Bỏ qua gửi email: thiếu RESEND_API_KEY hoặc LEAD_NOTIFY_EMAIL trong .env.local"
-      );
-    }
+    console.warn(
+      "[notify-lead] Bỏ qua gửi email: thiếu RESEND_API_KEY hoặc LEAD_NOTIFY_EMAIL (cần thêm trên Vercel → Settings → Environment Variables)"
+    );
     return;
   }
 

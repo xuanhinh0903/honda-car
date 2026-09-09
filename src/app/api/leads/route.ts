@@ -38,8 +38,8 @@ export async function POST(request: Request) {
     message: body.message?.trim() || undefined,
   });
 
-  // Không chặn phản hồi form nếu email lỗi
-  void notifyLeadByEmail(lead);
+  // Phải await trên Vercel — nếu fire-and-forget, function có thể bị tắt trước khi gửi xong
+  await notifyLeadByEmail(lead);
 
   return NextResponse.json({ ok: true });
 }
