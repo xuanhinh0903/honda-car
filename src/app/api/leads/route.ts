@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { requireAdmin } from "@/lib/admin-api";
 import { addLead, deleteLead, getLeads } from "@/lib/leads";
 import type { Lead } from "@/lib/leads-shared";
+import { notifyLeadByEmail } from "@/lib/notify-lead";
 
 export async function GET() {
   const session = await requireAdmin();
@@ -26,7 +27,7 @@ export async function POST(request: Request) {
     );
   }
 
-  await addLead({
+  const lead = await addLead({
     type,
     name,
     phone,
@@ -36,6 +37,9 @@ export async function POST(request: Request) {
     subject: body.subject?.trim() || undefined,
     message: body.message?.trim() || undefined,
   });
+
+  // Không chặn phản hồi form nếu email lỗi
+  void notifyLeadByEmail(lead);
 
   return NextResponse.json({ ok: true });
 }

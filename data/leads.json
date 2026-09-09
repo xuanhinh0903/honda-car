@@ -1,3 +1,22 @@
 {
-  "leads": []
+  "leads": [
+    {
+      "type": "quote",
+      "name": "hinh test",
+      "phone": "0928382973",
+      "email": "test@gmail.com",
+      "car": "hr-v",
+      "id": "1788976294620-g5ql0y",
+      "createdAt": "2026-09-09T17:51:34.620Z"
+    },
+    {
+      "type": "quote",
+      "name": "hinh",
+      "phone": "09823892",
+      "email": "buixuan@gmail.com",
+      "car": "hr-v",
+      "id": "1788976372248-0hn966",
+      "createdAt": "2026-09-09T17:52:52.248Z"
+    }
+  ]
 }
